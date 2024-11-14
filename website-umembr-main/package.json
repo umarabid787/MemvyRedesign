@@ -19,6 +19,7 @@
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@modern-js/babel-plugin-module-resolver": "^2.46.1",
+    "@mui/icons-material": "^6.1.7",
     "@mui/lab": "^6.0.0-beta.14",
     "@mui/material": "^6.1.6",
     "@mui/system": "^6.1.6",

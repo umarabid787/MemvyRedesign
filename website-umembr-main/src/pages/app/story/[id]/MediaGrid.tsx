@@ -437,6 +437,7 @@ interface MediaGridProps {
 const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   const dispatch = useDispatch();
   const { memoriesLoaded } = useSelector(memorySelector);
+   const [avatarError, setAvatarError] = useState(false);
  const [openModal, setOpenModal] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
   // Define state for filter and selected media item
@@ -603,15 +604,23 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
                     textAlign: 'left',
                   }}
                 >
-                  {/* {format(new Date(item.date), 'MMM dd, yyyy')} */}
+                  {format(new Date(item.created_at), 'MMM dd, yyyy')}
                 </Typography>
               </Box>
             </Box>
 
             {/* User Avatar */}
-            <Link href={`/user/${encodeURIComponent(item.username)}`} underline="none">
+            {/* <Link href={`/user/${encodeURIComponent(item.username)}`} underline="none">
               <Avatar src={item.userImage} alt={item.username} sx={{ width: 32, height: 32 }} />
-            </Link>
+            </Link> */}
+            <Link href={`/user/${encodeURIComponent(item.username)}`} underline="none">
+      <Avatar
+        src={avatarError ? '/icons/image1.svg' : item.userImage} // Use dummy avatar if image fails
+        alt={item.username}
+        sx={{ width: 32, height: 32 }}
+        onError={() => setAvatarError(true)} // Set error state if image fails to load
+      />
+    </Link>
           </Box>
 
           {/* Media Content */}
