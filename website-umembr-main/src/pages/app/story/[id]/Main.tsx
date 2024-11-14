@@ -23,7 +23,9 @@ import { useRouter } from 'next/router';
 import { Ref, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Console } from 'console';
+import { format } from 'date-fns';
 import MediaGrid from './MediaGrid';
+import Image from 'next/image';
 
 
 const theme = createTheme({
@@ -202,7 +204,7 @@ const Main: React.FC = () => {
       }
     };
   }, [story]);
-
+console.log("i am story", story)
   const closeCollaboratorsModal = () => {
     dispatch(closePublishModal());
   };
@@ -220,8 +222,9 @@ const Main: React.FC = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    // <ThemeProvider theme={theme}>
       <div className="ellipse-background1">
+       
         {/* StoryHeader Component */}
         <StoryHeader
           imgSrc={`${cdn_url}${story?.cover_image}`}  // Replace with the correct path to your image
@@ -241,7 +244,7 @@ const Main: React.FC = () => {
         {/* <GridLayoutCheck /> */}
         <MediaGrid story={story && story} />
       </div>
-    </ThemeProvider>
+
   );
 };
 

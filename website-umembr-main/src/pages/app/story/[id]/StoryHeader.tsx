@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Toolbar, Button, Box, Typography, Avatar, AvatarGroup, ThemeProvider } from '@mui/material';
 import Image from 'next/image';
 import {createTheme } from '@mui/material/styles';
+import { format } from 'date-fns';
 // Replace with the correct path to your theme
 
 interface StoryHeaderProps {
@@ -62,7 +63,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
     <ThemeProvider theme={theme}>
       {/* Fragment to wrap the entire content */}
       <>
-        <div className="ellipse-background1">
+        <div >
           <AppBar position="relative" style={{ backgroundColor: 'inherit', marginTop: '10rem' }}>
             <Toolbar
               sx={{
@@ -108,7 +109,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
             {title}
           </Typography>
           <Typography variant="h6" sx={{ color: '#B3BED4', fontSize: '16px', textAlign: 'center' }}>
-            Created {createdDate}
+            Created  {format(new Date(), 'MMM dd, yyyy')}
           </Typography>
 
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '24px' }}>
@@ -119,7 +120,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
             </AvatarGroup>
           </Box>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', margin: '0 20px', marginBottom: '10px' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', margin: '0 20px', marginBottom: '10px'  }}>
             <Typography variant="body1" style={{ color: 'white', maxWidth: '650px' }}>
               {description}
             </Typography>
