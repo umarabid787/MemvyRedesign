@@ -1,0 +1,31 @@
+export const palette = {
+  //new design colors
+  primary: '#0072CE',
+  background: '#131544',
+  gray: '#5C6372',
+  cardBorder: 'rgba(228, 222, 255, 0.2)',
+  cardBackground: 'linear-gradient(180deg, rgba(34,42,103,0.5) 0%, rgba(19,21,68,0.5) 100%)',
+  lightCardBackground: '#D8E8F6',
+  lightText: '#0072ce',
+  codGray: '#1d1d1d',
+  //new design colors
+
+  secondary: '#EB8334',
+  black: '#000000',
+  white: '#FFFFFF',
+  error: '#D32F2F',
+  focus: '#2196F3',
+  inputLight: 'rgba(0, 0, 0, 0.23)',
+  inputLabelLight: 'rgba(0, 0, 0, 0.6)',
+  lightGray: '#F5F5F5',
+  faintGray: '#4C535F',
+  dirtyWhite: '#FAFAFA',
+  iron: '#CCCED1',
+  gallery: '#EAEAEA',
+  backgroundOpacity: 'rgba(32, 34, 38, 0.5)',
+  opacityWhie: 'rgba(255, 255, 255, 0.25)',
+  opacityBlack: 'rgba(0, 0, 0, 0.50)',
+  opacityGray: 'rgba(0, 0, 0, 0.5)',
+  opacityBlackInputFile: 'rgba(0, 0, 0, 0.87)',
+  silverChalice: '#9E9E9E',
+};

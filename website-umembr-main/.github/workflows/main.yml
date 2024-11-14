@@ -1,0 +1,58 @@
+name: Deploy Memvy Website - Production
+
+on:
+  workflow_run:
+    workflows: ["Node.js CI"]
+    branches:
+      - "main"
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      
+    steps:
+      - name: build image
+        uses: ironhalik/docker-over-ssh-action@v1
+        env:
+          CI_REGISTRY_PASSWORD: ${{ secrets.SECRET_TOKEN }}
+          CI_REGISTRY: ghcr.io
+          CI_REGISTRY_USER: ${{ vars.CI_REGISTRY_USER }}
+          ENVIRONMENT: PRODUCTION
+          REPLICAS: 3
+          NETWORK: umembr-net
+        with:
+          user: dockeruser
+          host: engine.prd1.memvy.com
+          key: ${{ secrets.SSH_PRODUCTION_KEY }}
+          port: 22 # Defaults to 22
+          script: |
+            apk add git
+            git clone https://$CI_REGISTRY_USER:$CI_REGISTRY_PASSWORD@github.com/umembr/website-umembr  --branch main --single-branch
+            cd website-umembr
+            chmod +x -R ./scripts
+            ./scripts/build.sh
+      - name: deploy image
+        uses: ironhalik/docker-over-ssh-action@v1
+        env:
+          CI_REGISTRY_PASSWORD: ${{ secrets.SECRET_TOKEN }}
+          CI_REGISTRY: ghcr.io
+          CI_REGISTRY_USER: ${{ vars.CI_REGISTRY_USER }}
+          ENVIRONMENT: PRODUCTION
+          REPLICAS: 3
+          NETWORK: umembr-net
+        with:
+          user: dockeruser
+          host: engine.prd1.memvy.com
+          key: ${{ secrets.SSH_PRODUCTION_KEY }}
+          port: 22 # Defaults to 22
+          script: |
+            cd website-umembr
+            chmod +x -R ./scripts
+            ./scripts/deploy.sh
+            exit
+            exit
