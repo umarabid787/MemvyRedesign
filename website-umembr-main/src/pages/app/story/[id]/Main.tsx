@@ -223,7 +223,7 @@ console.log("i am story", story)
 
   return (
     // <ThemeProvider theme={theme}>
-      <div className="ellipse-background1">
+      <div className="ellipse-background1"z>
        
         {/* StoryHeader Component */}
         <StoryHeader

@@ -236,6 +236,15 @@ const StyledDialogContent = styled(DialogContent)(() => ({
 //   alignItems: 'center',
 //   justifyContent: 'space-between',
 // }));
+const StyledDialogTitle = styled(DialogTitle)({
+  backgroundColor: '#2B3672',
+  color: 'white',
+  position: 'relative',
+  padding: '16px',
+  overflow: 'hidden',
+  display: 'flex',
+  alignItems: 'center',
+});
 
 
 const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) => {

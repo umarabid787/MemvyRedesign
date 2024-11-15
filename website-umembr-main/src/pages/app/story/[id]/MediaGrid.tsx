@@ -75,6 +75,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   };
 
   return (
+    
     // <Box sx={{ maxWidth: '100%', margin: '0 auto', padding: 2 }}>
     <Box sx={{ maxWidth: '100%', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px', paddingTop: 2, paddingBottom: 2 }}>
       {/* Search and Filter Controls */}

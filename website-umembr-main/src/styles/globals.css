@@ -117,4 +117,15 @@ input[type='number'] {
 [data-slate-placeholder] {
   padding-top: 1rem;
 }
+.ellipse-background1 {
+  background-image: url('../../public/images/Ellipse7.png'), url('../../public/images/Ellipse33.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: contain, contain;
+  /* Adjust size as necessary */
+  background-position: left top, right bottom;
+  /* Adjust positions as necessary */
+  /*background-attachment: fixed, fixed;*/
+   min-height: 100vh;
+   
+}
 
