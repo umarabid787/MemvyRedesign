@@ -73,7 +73,7 @@ export const extendedPalette = {
       '&.Mui-focused fieldset': { borderColor: '#1A205A' },
     },
     '& input': {
-      color: 'white',
+      color: palette.white,
       padding: '10px 15px',
       fontSize: '0.9rem',
     },
