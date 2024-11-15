@@ -3,6 +3,7 @@ import { palette } from '@/theme/constants';
 import { Box } from '@mui/material';
 
 export const TextContent = ({ mediaData, boxRef }: any) => {
+  console.log("i am the text component", mediaData)
   return (
     <Box flexDirection={'column'} ref={boxRef} height={'calc(100% - 3.2rem)'}>
       <Box height={'100%'} sx={{ overflowY: 'auto' }}>

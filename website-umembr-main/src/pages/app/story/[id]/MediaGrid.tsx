@@ -4,13 +4,15 @@ import Masonry from '@mui/lab/Masonry';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import MediaModal from './MediaModal';
-import { palette } from '@/theme/constants';
+import { extendedPalette, palette } from '@/theme/constants';
 import { styles } from '../../../../components/AppBar/CancelModal/styles';
 import VideoThumbnail from './VideoThumbnail';
 import { getMemories } from '@/store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { memorySelector } from '@/store/selectors';
 import { cdn_url } from '@/utils';
+import { TextContent } from '@/screens/Memories/components';
+import { RtfComponent } from '@/components';
 
 interface MediaItem {
   type: 'image' | 'audio' | 'video' | 'text';
@@ -34,6 +36,9 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
   // Define state for filter and selected media item
   const [filter, setFilter] = useState('All');
+   
+
+ 
 
   useEffect(() => {
     dispatch(getMemories(story?.id));
@@ -75,8 +80,9 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   };
 
   return (
-    
-    // <Box sx={{ maxWidth: '100%', margin: '0 auto', padding: 2 }}>
+    <div className='ellipse-background1'>
+      <div className='ellipse-background2'>
+    {/* // <Box sx={{ maxWidth: '100%', margin: '0 auto', padding: 2 }}> */}
     <Box sx={{ maxWidth: '100%', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px', paddingTop: 2, paddingBottom: 2 }}>
       {/* Search and Filter Controls */}
      <Box sx={{ margin:'0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
@@ -85,24 +91,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
           variant="outlined"
           placeholder="Search"
           size="small"
-          sx={{
-            width: '150px',
-            '& .MuiOutlinedInput-root': {
-              backgroundColor: '#1A205A',
-              color: 'white',
-              marginLeft:'20px',
-              borderRadius: '30px',
-              '& fieldset': { borderColor: '#1A205A' },
-              '&:hover fieldset': { borderColor: '#1A205A' },
-              '&.Mui-focused fieldset': { borderColor: '#1A205A' },
-            },
-            '& input': {
-              color: 'white',
-              padding: '10px 15px',
-              fontSize: '0.9rem',
-            },
-            '& .MuiInputAdornment-root': { backgroundColor: '#1A205A', marginRight: '4px' },
-          }}
+          sx={{...extendedPalette.searchField}}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -116,20 +105,13 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
         <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, flexWrap: { xs: 'wrap', sm: 'nowrap' } }}>
           {['All', 'Image', 'Video', 'Audio', 'Text'].map((label) => (
             <Button
-              key={label}
-              variant="contained"
-              onClick={() => handleClick(label)}
-              sx={{
-                textTransform: 'none',
-                backgroundColor: filter === label ? 'white' : '#2B3672',
-                color: filter === label ? 'black' : 'white',
-                borderRadius: '20px',
-                margin: '8px',
-                '&:hover': { backgroundColor: filter === label ? 'white' : '#2B3672', color: filter === label ? 'black' : 'white' },
-              }}
-            >
-              {label}
-            </Button>
+      key={label}
+      variant="contained"
+      onClick={() => handleClick(label)}
+      sx={extendedPalette.filterButton(filter, label)}  // Apply style from palette
+    >
+      {label}
+    </Button>
           ))}
         </Box>
 
@@ -143,19 +125,49 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     justifyContent: { xs: 'center', sm: 'initial' } 
   }}
 >
-  <Button 
-    size="small" 
-    sx={{ 
-      textTransform: 'none', 
-      color: palette.dirtyWhite, 
-      '&:hover': { color: palette.secondary } 
+  <Button
+      size="small"
+      sx={extendedPalette.viewButton} // Apply style from extendedPalette
+    >
+      View
+    </Button>
+  <Button
+  startIcon={<Image src={'/icons/wait.svg'} alt={'icon'} width={22} height={22} />}
+  sx={{
+    color: extendedPalette.buttonColorGrid, // Base color from extendedPalette
+    //backgroundColor: extendedPalette.buttonColorGrid, // Set the background color as well
+    '&:hover': {
+      backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
+      //color: '#ffffff', // Optionally change the text color on hover
+    },
+  }}
+>
+</Button>
+
+ <Button
+    startIcon={
+      <Image
+        src={'/icons/grid.svg'}
+        alt={'icon'}
+        width={22}
+        height={22}
+        style={{ color: extendedPalette.buttonColorGrid }} // Explicit color for icon
+      />
+    }
+    sx={{
+      '&:hover': {
+        backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
+      },
     }}
-  >
-    View
-  </Button>
-  <Button startIcon={<Image src={'/icons/wait.svg'} alt={'icon'} width={22} height={22} />} sx={{ color: palette.secondary }}/>
-  <Button startIcon={<Image src={'/icons/grid.svg'} alt={'icon'} width={22} height={22} />} sx={{ color: palette.secondary }}/>
-  <Button startIcon={<Image src={'/icons/editing.svg'} alt={'icon'} width={22} height={22} />} sx={{ color: palette.secondary }}/>
+  />
+  <Button startIcon={<Image src={'/icons/editing.svg'} alt={'icon'} width={22} height={22} />} sx={{
+    color: extendedPalette.buttonColorGrid, // Base color from extendedPalette
+    //backgroundColor: extendedPalette.buttonColorGrid, // Set the background color as well
+    '&:hover': {
+      backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
+      //color: '#ffffff', // Optionally change the text color on hover
+    },
+  }}/>
 </Box>
 
       </Box>
@@ -170,8 +182,8 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
           sx={{
             borderRadius: 2,
             overflow: 'hidden',
-            backgroundColor: '#2B3672',
-            color: 'white',
+            backgroundColor: extendedPalette.cardMediaBackground ,
+            color: extendedPalette.cardMediaColor,
             display: 'flex',
             flexDirection: 'column',
             border: '1px solid rgba(255, 255, 255, 0.2)',
@@ -185,8 +197,8 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '8px 16px',
-              backgroundColor: '#2B3672',
-              color: 'white',
+              backgroundColor: extendedPalette.cardHeaderBackground,
+              color: extendedPalette.cardHeaderText,
             }}
           >
             {/* Media Icon and Text */}
@@ -280,7 +292,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   </div>
 )}
 
-            {item.type === 'text' && (
+            {/* {item.type === 'text' && (
               <Box
                 sx={{
                   maxHeight: { xs: '200px', sm: '220px', md: '264px' },  // Responsive maxHeight
@@ -294,7 +306,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
                     left: 0,
                     right: 0,
                     height: '20px',
-                    padding: '16px',
+                    padding: '18px',
                     background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #2B3672)',
                   },
                 }}
@@ -308,14 +320,54 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
                     fontWeight: 400,
                     lineHeight: { xs: '12px', sm: '13.2px', md: '14.4px' }, // Responsive line height
                     textAlign: 'left',
-                    whiteSpace: 'pre-line',
+                    //whiteSpace: 'pre-line',
                   }}
                 >
-                  {item.asset}
+                <RtfComponent rtf={item?.type === 'text' ? JSON.parse(item?.asset) : ''} label={'p'} />
+
                 </Typography>
               </Box>
-            )}
+            )} */}
+            {item.type === 'text' && (
+  <Box
+    sx={{
+      maxHeight: { xs: '36px', sm: '39.6px', md: '43.2px' },  // Approximate height for 3 lines
+      width: { xs: '100%', sm: '220px', md: '250px' },        // Responsive width
+      overflow: 'hidden',
+      position: 'relative',
+      '&:after': {
+        content: '""',
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '15px',
+        background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #2B3672)',
+      },
+    }}
+  >
+    <Typography
+      variant="body2"
+      color="white"
+      sx={{
+        fontFamily: 'PolySans Trial, sans-serif',
+        fontSize: { xs: '10px', sm: '11px', md: '12px' }, // Responsive font size
+        fontWeight: 400,
+        lineHeight: { xs: '12px', sm: '13.2px', md: '14.4px' }, // Responsive line height
+        textAlign: 'left',
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        WebkitLineClamp: 2, // Limit to 3 lines
+        overflow: 'hidden',
+      }}
+    >
+      <RtfComponent rtf={item?.type === 'text' ? JSON.parse(item?.asset) : ''} label={'p'} />
+    </Typography>
+  </Box>
+)}
+
           </Box>
+
         </Paper>
       ))}
     </Masonry>
@@ -323,6 +375,8 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
         <MediaModal open={openModal} onClose={handleCloseModal} mediaContent={selectedMedia} />
       )}
     </Box>
+    </div>
+    </div>
     
   );
 };

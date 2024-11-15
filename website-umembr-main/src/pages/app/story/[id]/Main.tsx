@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Console } from 'console';
 import { format } from 'date-fns';
 import MediaGrid from './MediaGrid';
+import { extendedPalette } from '@/theme/constants';
 import Image from 'next/image';
 
 
@@ -223,8 +224,8 @@ console.log("i am story", story)
 
   return (
     // <ThemeProvider theme={theme}>
-      <div className="ellipse-background1"z>
-       
+    <div style={{ backgroundColor: extendedPalette.storyBackground, height: '100%', width: '100%' }}>
+      <div className="ellipse-background1">
         {/* StoryHeader Component */}
         <StoryHeader
           imgSrc={`${cdn_url}${story?.cover_image}`}  // Replace with the correct path to your image
@@ -244,6 +245,8 @@ console.log("i am story", story)
         {/* <GridLayoutCheck /> */}
         <MediaGrid story={story && story} />
       </div>
+      </div>
+
 
   );
 };

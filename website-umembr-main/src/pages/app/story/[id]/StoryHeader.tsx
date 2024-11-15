@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Button, Box, Typography, Avatar, AvatarGroup, ThemePro
 import Image from 'next/image';
 import {createTheme } from '@mui/material/styles';
 import { format } from 'date-fns';
+import { extendedPalette } from '@/theme/constants';
 // Replace with the correct path to your theme
 
 interface StoryHeaderProps {
@@ -74,11 +75,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
               }}
             >
               <Button
-                style={{
-                  color: '#A9B4CC',
-                  fontSize: '14px',
-                  textTransform: 'none',
-                }}
+                style={{ ...extendedPalette.backButton }}
                 startIcon={<Image src={'/icons/backbu.svg'} alt={'icon'} width={8} height={14} />}
                 onClick={onBackClick}
               >
@@ -86,13 +83,9 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
               </Button>
 
               <Button
-                style={{ color: '#FFFFFF', fontSize: '14px', textTransform: 'none' }}
                 variant="contained"
-                color="secondary"
                 sx={{
-                  borderRadius: '20px',
-                  padding: '11px 16px',
-                  marginRight: { xs: '0', md: '50px' },
+                   ...extendedPalette.editButton,
                 }}
                 startIcon={<Image src={'/icons/editMem.svg'} alt={'icon'} width={13} height={13} />}
               >
@@ -105,10 +98,10 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
             <Image src={imgSrc} alt="Centered" width={159} height={160} style={{ objectFit: 'contain' }} />
           </Box>
 
-          <Typography variant="h3" sx={{ fontFamily: 'PolySans Trial', fontSize: '55px', color: 'white', textAlign: 'center', marginBottom: '10px' }}>
+          <Typography variant="h3" sx={{ fontFamily: 'PolySans Trial', fontSize: '55px', color: extendedPalette.storyTitle , textAlign: 'center', marginBottom: '10px' }}>
             {title}
           </Typography>
-          <Typography variant="h6" sx={{ color: '#B3BED4', fontSize: '16px', textAlign: 'center' }}>
+          <Typography variant="h6" sx={{ ...extendedPalette.dateStyle }}>
             Created  {format(new Date(), 'MMM dd, yyyy')}
           </Typography>
 
@@ -121,7 +114,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
           </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', margin: '0 20px', marginBottom: '10px'  }}>
-            <Typography variant="body1" style={{ color: 'white', maxWidth: '650px' }}>
+            <Typography variant="body1" style={{ ...extendedPalette.description}}>
               {description}
             </Typography>
           </Box>
