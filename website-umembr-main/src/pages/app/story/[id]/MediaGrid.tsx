@@ -36,7 +36,8 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
   // Define state for filter and selected media item
   const [filter, setFilter] = useState('All');
-   
+
+   const { isDivider } = extendedPalette.isDividerCheck;
 
  
 
@@ -80,12 +81,11 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   };
 
   return (
-    <div className='ellipse-background1'>
       <div className='ellipse-background2'>
     {/* // <Box sx={{ maxWidth: '100%', margin: '0 auto', padding: 2 }}> */}
     <Box sx={{ maxWidth: '100%', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px', paddingTop: 2, paddingBottom: 2 }}>
       {/* Search and Filter Controls */}
-     <Box sx={{ margin:'0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexDirection: { xs: 'column', sm: 'row' } }}>
+     <Box sx={{ padding:'10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2,backgroundColor: '#00000080', flexDirection: { xs: 'column', sm: 'row' }, borderRadius: '16px' }}>
         {/* Search Field */}
         <TextField
           variant="outlined"
@@ -132,16 +132,30 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
       View
     </Button>
   <Button
-  startIcon={<Image src={'/icons/wait.svg'} alt={'icon'} width={22} height={22} />}
+  startIcon={
+    <Image 
+      src={'/icons/wait.svg'} 
+      alt={'icon'} 
+      width={22} 
+      height={22} 
+      style={{ color: extendedPalette.buttonColorGrid }} // Set the color for the icon
+    />
+  }
   sx={{
-    color: extendedPalette.buttonColorGrid, // Base color from extendedPalette
-    //backgroundColor: extendedPalette.buttonColorGrid, // Set the background color as well
+    color: extendedPalette.buttonColorGrid, // Base color for text
     '&:hover': {
       backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
-      //color: '#ffffff', // Optionally change the text color on hover
+      // Optionally change text color on hover
+      color: '#ffffff', // Text color on hover (if you want it to change on hover)
+      '& svg': { // Target the icon specifically on hover
+        fill: '#ffffff', // Change icon color on hover
+      },
     },
   }}
 >
+  {/* Button content */}
+
+
 </Button>
 
  <Button
@@ -160,19 +174,35 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
       },
     }}
   />
-  <Button startIcon={<Image src={'/icons/editing.svg'} alt={'icon'} width={22} height={22} />} sx={{
-    color: extendedPalette.buttonColorGrid, // Base color from extendedPalette
-    //backgroundColor: extendedPalette.buttonColorGrid, // Set the background color as well
+ <Button
+  startIcon={
+    <Image 
+      src={'/icons/editing.svg'} 
+      alt={'icon'} 
+      width={22} 
+      height={22} 
+      style={{ color: extendedPalette.buttonColorGrid }} // Apply color to the icon directly
+    />
+  }
+  sx={{
+    color: extendedPalette.buttonColorGrid, // Base color for text
     '&:hover': {
       backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
-      //color: '#ffffff', // Optionally change the text color on hover
+      '& img': { // Target the image specifically on hover
+        filter: 'brightness(0) saturate(100%) invert(38%) sepia(84%) saturate(422%) hue-rotate(176deg) brightness(96%) contrast(88%)', // Apply color change to the icon
+      },
     },
-  }}/>
+  }}
+>
+  {/* Button content */}
+</Button>
+
 </Box>
 
       </Box>
 
-      <Divider   sx={styles.divider} />
+      {/* <Divider   sx={styles.divider} /> */}
+        {isDivider && <Divider sx={styles.divider} />}
 
       {/* Media Grid */}
 <Masonry  columns={{ xs: 2, sm: 3, md: 4 }} spacing={2} sx={{ margin: 0 }}>
@@ -342,7 +372,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
         left: 0,
         right: 0,
         height: '15px',
-        background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #2B3672)',
+        background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #333333)',
       },
     }}
   >
@@ -375,7 +405,6 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
         <MediaModal open={openModal} onClose={handleCloseModal} mediaContent={selectedMedia} />
       )}
     </Box>
-    </div>
     </div>
     
   );

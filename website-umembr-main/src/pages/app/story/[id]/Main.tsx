@@ -43,6 +43,7 @@ const theme = createTheme({
 const Main: React.FC = () => {
   const handleBackClick = () => {
     console.log("Back button clicked");
+     router.push('/app/home'); 
     // Implement back navigation logic here
   };
   const [selectedMemorie, setSelectedMemorie] = useState<any>(null);
@@ -225,7 +226,7 @@ console.log("i am story", story)
   return (
     // <ThemeProvider theme={theme}>
     <div style={{ backgroundColor: extendedPalette.storyBackground, height: '100%', width: '100%' }}>
-      <div className="ellipse-background1">
+      <div style={extendedPalette.ellipseBackground1}>
         {/* StoryHeader Component */}
         <StoryHeader
           imgSrc={`${cdn_url}${story?.cover_image}`}  // Replace with the correct path to your image

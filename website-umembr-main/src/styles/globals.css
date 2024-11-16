@@ -117,35 +117,5 @@ input[type='number'] {
 [data-slate-placeholder] {
   padding-top: 1rem;
 }
-.ellipse-background1 {
-  background-image: url('../../public/images/Ellipse7.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: contain, contain;
-  /* Adjust size as necessary */
-  background-position: left 100px;
-  /* Adjust positions as necessary */
-  /*background-attachment: fixed, fixed;*/
-   min-height: 100vh;
-   
-}
 
-.ellipse-background2 {
-  background-image: url('../../public/images/Ellipse33.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: contain, contain;
-  /* Adjust size as necessary */
-  background-position: right -60px;
-  /* Adjust positions as necessary */
-  /*background-attachment: fixed, fixed;*/
-  min-height: 100vh;
-
-}
-.ellipse-background3 {
-  position: relative;
-  overflow: hidden;
-  background-color: #04071E;
-  /* Fallback color */
-
-  /* Ensure it covers the full height */
-}
 
