@@ -77,7 +77,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoSrc }) => {
               cursor: "pointer",
               width: "60px",
               height: "60px",
-              backgroundImage: "url('/assets/buttonPlay.png')",
+              backgroundImage: "url(../../public/images/buttonPlay')",
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
