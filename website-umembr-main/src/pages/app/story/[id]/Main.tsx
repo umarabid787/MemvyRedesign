@@ -16,8 +16,8 @@ import {
   viewStoryG,
 } from '@/store/actions';
 import { authSelector, currentStorySelector, intermitenceSelector } from '@/store/selectors';
-import { cdn_url, ExtractCallbackType, promisifiedCallback } from '@/utils';
-import { Box, BoxProps, Theme, useMediaQuery } from '@mui/material';
+import { cdn_url } from '@/utils';
+import { BoxProps, Theme, useMediaQuery } from '@mui/material';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { Ref, useCallback, useEffect, useRef, useState } from 'react';
