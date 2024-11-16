@@ -189,23 +189,31 @@ export const extendedPalette = {
 
 
     isDividerCheck: { isDivider: false } as DividerType,
-    ellipseBackground2: {
+  ellipseBackground2: {
     backgroundImage: "url('../../../../images/blackelips.png')",
     backgroundRepeat: 'no-repeat, no-repeat',
     backgroundSize: 'contain, contain',
-    backgroundPosition: 'right -0px',
+    backgroundPosition: 'right 0px',
     minHeight: '100vh',
-    // Uncomment the following if needed:
-    // backgroundAttachment: 'fixed, fixed',
+    // Responsive adjustments
+    '@media (max-width: 600px)': {
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      minHeight: '50vh',
+    },
   },
   ellipseBackground1: {
     backgroundImage: "url('../../../../images/elipsered.png')",
     backgroundRepeat: 'no-repeat, no-repeat',
     backgroundSize: 'contain, contain',
-    backgroundPosition: 'left 50px',
+    backgroundPosition: 'left 20px',
     minHeight: '100vh',
-    // Uncomment the following if needed:
-    // backgroundAttachment: 'fixed, fixed',
+    // Responsive adjustments
+    '@media (max-width: 600px)': {
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      minHeight: '50vh',
+    },
   },
- 
+  cardIconColor:'#BA0C2F',
 };

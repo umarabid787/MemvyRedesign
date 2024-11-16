@@ -117,5 +117,8 @@ input[type='number'] {
 [data-slate-placeholder] {
   padding-top: 1rem;
 }
-
+:root {
+  --icon-color: #000000;
+  /* Default color, can be overridden */
+}
 

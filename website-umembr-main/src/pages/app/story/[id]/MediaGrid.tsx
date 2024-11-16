@@ -13,6 +13,10 @@ import { memorySelector } from '@/store/selectors';
 import { cdn_url } from '@/utils';
 import { TextContent } from '@/screens/Memories/components';
 import { RtfComponent } from '@/components';
+import Image1Icon from '../../../../../public/icons/image1';
+import Video1Icon from '../../../../../public/icons/video1';
+import Text1Icon from '../../../../../public/icons/test1';
+import Audio1Icon from '../../../../../public/icons/audio1';
 
 interface MediaItem {
   type: 'image' | 'audio' | 'video' | 'text';
@@ -65,16 +69,16 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     (item:any) => filter === 'All' || item.type === filter.toLowerCase()
   );
 
-  const getIcon = (type: string) => {
-    switch (type) {
-      case 'image':
-        return <Image src={'/icons/image1.svg'} alt={'Image icon'} width={24} height={24} />;
+  const getIcon = (type: string, color: string) => {
+  switch (type) {
+    case 'image':
+      return <Image1Icon color={color} />;
       case 'video':
-        return <Image src={'/icons/video1.svg'} alt={'Video icon'} width={24} height={24} />;
+        return <Video1Icon color={color} />;
       case 'audio':
-        return <Image src={'/icons/audio1.svg'} alt={'Audio icon'} width={19.71} height={24} />;
+        return <Audio1Icon color={color}/>;
       case 'text':
-        return <Image src={'/icons/text1.svg'} alt={'Text icon'} width={32} height={24} />;
+        return <Text1Icon color={color} />;
       default:
         return null;
     }
@@ -141,17 +145,14 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
       style={{ color: extendedPalette.buttonColorGrid }} // Set the color for the icon
     />
   }
-  sx={{
-    color: extendedPalette.buttonColorGrid, // Base color for text
-    '&:hover': {
-      backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
-      // Optionally change text color on hover
-      color: '#ffffff', // Text color on hover (if you want it to change on hover)
-      '& svg': { // Target the icon specifically on hover
-        fill: '#ffffff', // Change icon color on hover
+   sx={{
+      '&:hover': {
+        backgroundColor: extendedPalette.buttonHoverColor,
+        '& img': {
+      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white
+    }, // Background hover color
       },
-    },
-  }}
+    }}
 >
   {/* Button content */}
 
@@ -170,7 +171,10 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     }
     sx={{
       '&:hover': {
-        backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
+        backgroundColor: extendedPalette.buttonHoverColor,
+        '& img': {
+      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white
+    }, // Background hover color
       },
     }}
   />
@@ -188,9 +192,9 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     color: extendedPalette.buttonColorGrid, // Base color for text
     '&:hover': {
       backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
-      '& img': { // Target the image specifically on hover
-        filter: 'brightness(0) saturate(100%) invert(38%) sepia(84%) saturate(422%) hue-rotate(176deg) brightness(96%) contrast(88%)', // Apply color change to the icon
-      },
+      '& img': {
+      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white
+    },
     },
   }}
 >
@@ -233,7 +237,9 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
           >
             {/* Media Icon and Text */}
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Box sx={{ mr: 1 }}>{getIcon(item.type)}</Box>
+              <Box sx={{ mr: 1 }}>
+  {getIcon(item.type, extendedPalette.cardIconColor)}  {/* Example color passed */}
+</Box>
               <Box>
                 <Typography
                   variant="body2"
