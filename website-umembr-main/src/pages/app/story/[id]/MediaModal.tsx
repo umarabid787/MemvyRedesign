@@ -25,7 +25,7 @@ interface MediaContentItem {
   content?: string;
   username: string;
   userImage: string;
-  title: string;
+  title?: string;
   memory_details?: {
     complementaryImage?: string[];
     complementaryAudio?: string[];
@@ -183,7 +183,7 @@ const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) 
         )}
         {mediaContent.type === 'text' && !showAdditionalContent && (
           <Typography>
-            <RtfComponent rtf={mediaContent?.type === 'text' ? JSON.parse(mediaContent?.asset) : ''} label={'p'} />
+            <RtfComponent rtf={mediaContent?.type === 'text' ? JSON.parse(mediaContent?.asset||"") : ''} label={'p'} />
           </Typography>
         )}
 
@@ -192,20 +192,21 @@ const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) 
           <>
             {currentComplementaryContent.type === 'image' && (
               <img
-                src={`${cdn_url}${currentComplementaryContent.src}`}
+                 src={`${cdn_url}${(currentComplementaryContent as { src: string }).src}`}
                 alt="Complementary"
                 style={{ width: '100%' }}
               />
             )}
             {currentComplementaryContent.type === 'audio' && (
-              <audio controls src={`${cdn_url}${currentComplementaryContent.src}`} style={{ width: '100%' }} />
+              <audio controls  src={`${cdn_url}${(currentComplementaryContent as { src: string }).src}`} style={{ width: '100%' }} />
             )}
             {currentComplementaryContent.type === 'video' && (
-              <video controls src={`${cdn_url}${currentComplementaryContent.src}`} style={{ width: '100%' }} />
+              <video controls  src={`${cdn_url}${(currentComplementaryContent as { src: string }).src}`} style={{ width: '100%' }} />
             )}
-            {currentComplementaryContent.type === 'text' && (
-              <Typography>{currentComplementaryContent.content}</Typography>
-            )}
+            {currentComplementaryContent.type === 'text' && 'content' in currentComplementaryContent && (
+  <Typography>{currentComplementaryContent.content}</Typography>
+)}
+
           </>
         )}
 

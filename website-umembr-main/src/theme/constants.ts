@@ -116,7 +116,6 @@ export const extendedPalette = {
   backButton: {
     color: '#A9B4CC',
     fontSize: '14px',
-    textTransform: 'none',
   },
    editButton: {
     color: palette.white, // Text color

@@ -75,7 +75,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
               }}
             >
               <Button
-                style={{ ...extendedPalette.backButton }}
+                style={{ ...extendedPalette.backButton ,textTransform: 'none',}}
                 startIcon={<Image src={'/icons/backbu.svg'} alt={'icon'} width={8} height={14} />}
                 onClick={onBackClick}
               >

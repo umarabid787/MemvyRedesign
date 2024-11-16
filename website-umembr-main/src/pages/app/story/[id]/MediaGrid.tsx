@@ -4,28 +4,36 @@ import Masonry from '@mui/lab/Masonry';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import MediaModal from './MediaModal';
-import { extendedPalette, palette } from '@/theme/constants';
+import { extendedPalette } from '@/theme/constants';
 import { styles } from '../../../../components/AppBar/CancelModal/styles';
 import VideoThumbnail from './VideoThumbnail';
 import { getMemories } from '@/store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { memorySelector } from '@/store/selectors';
 import { cdn_url } from '@/utils';
-import { TextContent } from '@/screens/Memories/components';
 import { RtfComponent } from '@/components';
 import Image1Icon from '../../../../../public/icons/image1';
 import Video1Icon from '../../../../../public/icons/video1';
 import Text1Icon from '../../../../../public/icons/test1';
 import Audio1Icon from '../../../../../public/icons/audio1';
 
+type MediaType = 'image' | 'audio' | 'video' | 'text';
+
 interface MediaItem {
-  type: 'image' | 'audio' | 'video' | 'text';
+  type: MediaType;
   src?: string;
+  asset?: string;
   alt?: string;
   content?: string;
-  username: React.ReactNode;
-  date: string;
+  username: string;
   userImage: string;
+  title?: string;
+  memory_details?: {
+    complementaryImage?: string[];
+    complementaryAudio?: string[];
+    complementaryVideo?: string[];
+    complementaryText?: string[];
+  };
 }
 
 interface MediaGridProps {
