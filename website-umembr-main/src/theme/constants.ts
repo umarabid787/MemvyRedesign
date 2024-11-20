@@ -37,134 +37,59 @@ export const palette = {
   buttonColor:'#2B3672',
   
 };
-// export const extendedPalette = {
-//   storyBackground: palette.storyBackgroundColor,
-//   backButton: {
-//     color: '#A9B4CC',
-//     fontSize: '14px',
-//     textTransform: 'none',
-//   },
-//    editButton: {
-//     color: palette.white, // Text color
-//     backgroundColor: palette.buttonColor, // Background color
-//     fontSize: '14px',
-//     textTransform: 'none',
-//     borderRadius: '20px',
-//     padding: '11px 16px',
-//     marginRight: { xs: '0', md: '50px' },
-//   },
-//   storyTitle: palette.white, //Story Title
-//     // Date Style
-//    dateStyle: {
-//     color: '#B3BED4',
-//     fontSize: '16px',
-//     textAlign: 'center',
-//   },
-//   description:{
-//     color: palette.white, maxWidth: '650px' 
-//   },
-
-//   searchField:{
-//     width: '150px',
-//     '& .MuiOutlinedInput-root': {
-//       backgroundColor: '#1A205A',
-//       color: palette.white,
-//       marginLeft: '20px',
-//       borderRadius: '30px',
-//       '& fieldset': { borderColor: '#1A205A' },
-//       '&:hover fieldset': { borderColor: '#1A205A' },
-//       '&.Mui-focused fieldset': { borderColor: '#1A205A' },
-//     },
-//     '& input': {
-//       color: 'white',
-//       padding: '10px 15px',
-//       fontSize: '0.9rem',
-//     },
-//     '& .MuiInputAdornment-root': { backgroundColor: '#1A205A', marginRight: '4px' },
-//   },
-//  filterButton: (filter: any, label: any) => ({
-//   textTransform: 'none',
-//   backgroundColor: filter === label ? palette.white : palette.buttonColor,
-//   color: filter === label ? palette.black : palette.white,
-//   borderRadius: '20px',
-//   margin: '8px',
-//   '&:hover': {
-//     backgroundColor: filter === label ? palette.white : palette.buttonColor,
-//     color: filter === label ? palette.black : palette.white,
-//   },
-// }),
-
-//   viewButton: {
-//     textTransform: 'none',
-//     color: palette.dirtyWhite, // This corresponds to palette.dirtyWhite
-//     '&:hover': {
-//       color: palette.secondary, // This corresponds to palette.secondary
-//     },
-//   },
-//   buttonColorGrid:'#2B3672',
-//   buttonHoverColor: '#EB8334', 
-//   //Card Media Colors
-//   cardMediaBackground:'#2B3672',
-//   cardMediaColor:palette.white,
-
-//   //Card Header Color
-//   cardHeaderBackground:'#2B3672',
-//   cardHeaderText:palette.white,
-// };
 export const extendedPalette = {
-  storyBackground: '#1B1B1B',
+  storyBackground: palette.storyBackgroundColor,
   backButton: {
     color: '#A9B4CC',
     fontSize: '14px',
+    textTransform: 'none',
   },
    editButton: {
     color: palette.white, // Text color
-    backgroundColor: '#333333', // Background color
+    backgroundColor: palette.buttonColor, // Background color
     fontSize: '14px',
     textTransform: 'none',
     borderRadius: '20px',
-     backdropFilter: 'blur(14px)',
     padding: '11px 16px',
     marginRight: { xs: '0', md: '50px' },
-     boxShadow: '0px 4px 14px 0px #00000026',
   },
   storyTitle: palette.white, //Story Title
     // Date Style
    dateStyle: {
-    color: '#666666',
+    color: '#B3BED4',
     fontSize: '16px',
     textAlign: 'center',
   },
   description:{
-    color: '#CCCCCC', maxWidth: '650px' 
+    color: palette.white, maxWidth: '650px' 
   },
 
   searchField:{
     width: '150px',
     '& .MuiOutlinedInput-root': {
-      backgroundColor: '#333333',
+      backgroundColor: '#1A205A',
       color: palette.white,
       marginLeft: '20px',
       borderRadius: '30px',
-      '& fieldset': { borderColor: '#333333' },
-      '&:hover fieldset': { borderColor: '#333333' },
-      '&.Mui-focused fieldset': { borderColor: '#333333' },
+      '& fieldset': { borderColor: '#1A205A' },
+      '&:hover fieldset': { borderColor: '#1A205A' },
+      '&.Mui-focused fieldset': { borderColor: '#1A205A' },
     },
     '& input': {
       color: 'white',
       padding: '10px 15px',
       fontSize: '0.9rem',
     },
-    '& .MuiInputAdornment-root': { backgroundColor: '#333333', marginRight: '4px' },
+    '& .MuiInputAdornment-root': { backgroundColor: '#1A205A', marginRight: '4px' },
   },
  filterButton: (filter: any, label: any) => ({
   textTransform: 'none',
-  backgroundColor: filter === label ? palette.white : '#333333',
+  backgroundColor: filter === label ? palette.white : palette.buttonColor,
   color: filter === label ? palette.black : palette.white,
   borderRadius: '20px',
   margin: '8px',
   '&:hover': {
-    backgroundColor: filter === label ? palette.white : '#333333',
+    backgroundColor: filter === label ? palette.white : palette.buttonColor,
     color: filter === label ? palette.black : palette.white,
   },
 }),
@@ -176,33 +101,32 @@ export const extendedPalette = {
       color: palette.secondary, // This corresponds to palette.secondary
     },
   },
-  buttonColorGrid:'#333333',
-  buttonHoverColor: '#BA0C2F', 
+  buttonColorGrid:'#2B3672',
+  buttonHoverColor: '#2B3672', 
   //Card Media Colors
-  cardMediaBackground:'#333333',
+  cardMediaBackground:'#2B3672',
   cardMediaColor:palette.white,
+  otherButton:'#2B3672',
 
   //Card Header Color
-  cardHeaderBackground:'#333333',
+  cardHeaderBackground:'#2B3672',
   cardHeaderText:palette.white,
-
-
-    isDividerCheck: { isDivider: false } as DividerType,
+  isDividerCheck: { isDivider: true } as DividerType,
   ellipseBackground2: {
-    backgroundImage: "url('../../../../images/blackelips.png')",
+    backgroundImage: "url('../../../../images/Ellipse33.png')",
     backgroundRepeat: 'no-repeat, no-repeat',
     backgroundSize: 'contain, contain',
-    backgroundPosition: 'right 0px',
+    backgroundPosition: 'right -60px',
     minHeight: '100vh',
     // Responsive adjustments
     '@media (max-width: 600px)': {
       backgroundPosition: 'center',
       backgroundSize: 'cover',
-      minHeight: '50vh',
+      minHeight: '100vh',
     },
   },
   ellipseBackground1: {
-    backgroundImage: "url('../../../../images/elipsered.png')",
+    backgroundImage: "url('../../../../images/Ellipse7.png')",
     backgroundRepeat: 'no-repeat, no-repeat',
     backgroundSize: 'contain, contain',
     backgroundPosition: 'left 20px',
@@ -214,5 +138,110 @@ export const extendedPalette = {
       minHeight: '50vh',
     },
   },
-  cardIconColor:'#BA0C2F',
+  cardIconColor:'#B3BED4',
 };
+// export const extendedPalette = {
+//   storyBackground: '#1B1B1B',
+//   backButton: {
+//     color: '#A9B4CC',
+//     fontSize: '14px',
+//   },
+//    editButton: {
+//     color: palette.white, // Text color
+//     backgroundColor: '#333333', // Background color
+//     fontSize: '14px',
+//     textTransform: 'none',
+//     borderRadius: '20px',
+//      backdropFilter: 'blur(14px)',
+//     padding: '11px 16px',
+//     marginRight: { xs: '0', md: '50px' },
+//      boxShadow: '0px 4px 14px 0px #00000026',
+//   },
+//   storyTitle: palette.white, //Story Title
+//     // Date Style
+//    dateStyle: {
+//     color: '#666666',
+//     fontSize: '16px',
+//     textAlign: 'center',
+//   },
+//   description:{
+//     color: '#CCCCCC', maxWidth: '650px' 
+//   },
+
+//   searchField:{
+//     width: '150px',
+//     '& .MuiOutlinedInput-root': {
+//       backgroundColor: '#333333',
+//       color: palette.white,
+//       marginLeft: '20px',
+//       borderRadius: '30px',
+//       '& fieldset': { borderColor: '#333333' },
+//       '&:hover fieldset': { borderColor: '#333333' },
+//       '&.Mui-focused fieldset': { borderColor: '#333333' },
+//     },
+//     '& input': {
+//       color: 'white',
+//       padding: '10px 15px',
+//       fontSize: '0.9rem',
+//     },
+//     '& .MuiInputAdornment-root': { backgroundColor: '#333333', marginRight: '4px' },
+//   },
+//  filterButton: (filter: any, label: any) => ({
+//   textTransform: 'none',
+//   backgroundColor: filter === label ? palette.white : '#333333',
+//   color: filter === label ? palette.black : palette.white,
+//   borderRadius: '20px',
+//   margin: '8px',
+//   '&:hover': {
+//     backgroundColor: filter === label ? palette.white : '#333333',
+//     color: filter === label ? palette.black : palette.white,
+//   },
+// }),
+
+//   viewButton: {
+//     textTransform: 'none',
+//     color: palette.dirtyWhite, // This corresponds to palette.dirtyWhite
+//     '&:hover': {
+//       color: palette.secondary, // This corresponds to palette.secondary
+//     },
+//   },
+//   buttonColorGrid:'#333333',
+//   buttonHoverColor: '#BA0C2F', 
+//   //Card Media Colors
+//   cardMediaBackground:'#333333',
+//   cardMediaColor:palette.white,
+
+//   //Card Header Color
+//   cardHeaderBackground:'#333333',
+//   cardHeaderText:palette.white,
+
+
+//     isDividerCheck: { isDivider: false } as DividerType,
+//   ellipseBackground2: {
+//     backgroundImage: "url('../../../../images/blackelips.png')",
+//     backgroundRepeat: 'no-repeat, no-repeat',
+//     backgroundSize: 'contain, contain',
+//     backgroundPosition: 'right 0px',
+//     minHeight: '100vh',
+//     // Responsive adjustments
+//     '@media (max-width: 600px)': {
+//       backgroundPosition: 'center',
+//       backgroundSize: 'cover',
+//       minHeight: '50vh',
+//     },
+//   },
+//   ellipseBackground1: {
+//     backgroundImage: "url('../../../../images/elipsered.png')",
+//     backgroundRepeat: 'no-repeat, no-repeat',
+//     backgroundSize: 'contain, contain',
+//     backgroundPosition: 'left 20px',
+//     minHeight: '100vh',
+//     // Responsive adjustments
+//     '@media (max-width: 600px)': {
+//       backgroundPosition: 'center',
+//       backgroundSize: 'cover',
+//       minHeight: '50vh',
+//     },
+//   },
+//   cardIconColor:'#BA0C2F',
+// };

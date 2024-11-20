@@ -31,8 +31,8 @@ const MemoriesPage = ({ pageProps: { story } }: InferGetServerSidePropsType<any>
         <meta name='twitter:description' content={story?.description ?? ''} />
         <meta name='twitter:image' content={`${cdn_url}${story?.cover_image ?? ''}`} />
       </Head>
-      {/* <Memories /> */}
-      <Main />
+      <Memories />
+      {/* <Main /> */}
     </Layout>
   );
 };
