@@ -57,7 +57,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
   title, 
   createdDate, 
   description, 
-  collaborators, 
+   collaborators = [], //
   onBackClick 
 }) => {
   return (
@@ -105,13 +105,20 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
             Created  {format(new Date(), 'MMM dd, yyyy')}
           </Typography>
 
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '24px' }}>
+          {/* <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '24px' }}>
             <AvatarGroup max={4}>
               {collaborators.map((collab, index) => (
                 <Avatar key={index} alt={collab.alt} src={collab.src} sx={{ width: 36, height: 36 }} />
               ))}
             </AvatarGroup>
-          </Box>
+          </Box> */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '24px' }}>
+          <AvatarGroup max={4}>
+            {collaborators.map((collab, index) => (
+              <Avatar key={index} alt={collab.alt} src={collab.src} sx={{ width: 36, height: 36 }} />
+            ))}
+          </AvatarGroup>
+        </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', margin: '0 20px', marginBottom: '10px'  }}>
             <Typography variant="body1" style={{ ...extendedPalette.description}}>
