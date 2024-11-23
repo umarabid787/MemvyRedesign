@@ -246,7 +246,7 @@ console.log("i am story", story)
             top: '10%',  // Center vertically
             zIndex: 0,   // Behind the content
             width: '80rem', // Adjust width for the desired size
-            height: '100%',
+            height: '30rem',
             pointerEvents: 'none', // Make it non-interactive
             backgroundRepeat: 'no-repeat, no-repeat',
             backgroundSize: 'contain, contain',
