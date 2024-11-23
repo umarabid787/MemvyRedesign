@@ -243,10 +243,10 @@ console.log("i am story", story)
           sx={{
             position: 'absolute',
             left: '0%', // Adjust the right position as needed
-            top: '20%',  // Center vertically
+            top: '10%',  // Center vertically
             zIndex: 0,   // Behind the content
             width: '80rem', // Adjust width for the desired size
-            height: '73rem',
+            height: '100%',
             pointerEvents: 'none', // Make it non-interactive
             backgroundRepeat: 'no-repeat, no-repeat',
             backgroundSize: 'contain, contain',
