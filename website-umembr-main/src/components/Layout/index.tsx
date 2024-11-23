@@ -52,9 +52,15 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setSeparation } from '@/store/actions';
-import { extendedPalette } from '@/theme/constants';
+import { extendedPalette } from '@/theme/constants';  // Assuming the colors are defined here
+import { palette } from '@/theme/constants';
 
-export const Layout = ({ children }: any) => {
+interface LayoutProps {
+  children: React.ReactNode;
+  color?: string;  // Add a color prop
+}
+
+export const Layout = ({ children, color }: LayoutProps) => {
   const router = useRouter();
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const dispatch = useDispatch();
@@ -73,56 +79,25 @@ export const Layout = ({ children }: any) => {
     dispatchSeparation();
   }, [router.pathname, isMobile]);
 
+  // If a color is provided, use it, otherwise fallback to default logic
+  const backgroundColor = color || palette.background;
+
   return (
     <>
-      <MuiAppBar />
+      <MuiAppBar  />
       <Box display={'flex'} id="component-main" position={'relative'}>
         <Drawer />
         <Box
-
           component="main"
-          height={isMobile ? 'auto' : `100vh`}
-          width={'100%'}
-          minHeight={isMobile ? 'auto' : `100vh`}
-          overflow={'visible'}
-          position="relative" // Make sure the ellipses are positioned relative to this containe
+          sx={{
+            backgroundColor: backgroundColor,  // Apply the color to background dynamically
+            height: isMobile ? 'auto' : '100vh',
+            width: '100%',
+            minHeight: isMobile ? 'auto' : '100vh',
+            overflow: 'visible',
+            position: 'relative',  // Ensure child elements are positioned relative to this container
+          }}
         >
-          {/* Ellipse 1 (Left Center)
-          <Box zIndex={0}
-            sx={{
-
-              position: 'absolute',
-              left: '0', // Adjust the left position as needed
-              top: '20%',  // Center vertically
-              // transform: 'translateY(-50%)',
-              width: '80rem', // Ellipse size
-              height: '73rem',
-              // borderRadius: '50%',
-              // backgroundColor: 'rgba(255, 0, 0, 0.123)', // Red with transparency, adjust color
-              backgroundImage: extendedPalette.ellipseImageLeft,
-              backgroundRepeat: 'no-repeat, no-repeat',
-    backgroundSize: 'contain, contain',
-     pointerEvents: 'none', 
-            }}
-          />
-
-       
-          <Box
-            sx={{
-              position: 'absolute',
-              right: '-9%', // Adjust the right position as needed
-              top: '30%',  // Center vertically
-              // transform: 'translateY(-50%)',
-              zIndex: 0, // Behind the content
-              width: '60%', // Ellipse size
-              height: '70%',
-              // borderRadius: '50%',
-              backgroundImage: extendedPalette.ellipseRightImage, // Blue with transparency, adjust color
-                            backgroundRepeat: 'no-repeat, no-repeat',
-                             pointerEvents: 'none', 
-            }}
-          /> */}
-
           {/* Main content */}
           {children}
         </Box>

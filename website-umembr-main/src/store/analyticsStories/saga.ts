@@ -5,6 +5,7 @@ import { sendEvent } from '@/utils/analytics';
 
 function* handleViewStoryG({ payload }: any): any {
   const { story} = payload;
+  console.log("i am the payload", payload)
   yield call(sendEvent, {
     event: 'view_story',
     category: 'Story Management',

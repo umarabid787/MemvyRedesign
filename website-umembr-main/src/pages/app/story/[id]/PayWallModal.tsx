@@ -19,6 +19,7 @@ import {
 import FacebookIcon from '@mui/icons-material/Facebook'; // <-- Add this line
 import GoogleIcon from '@mui/icons-material/Google';
 import TickIcon from '../../../../../public/icons/RedTickIcon';
+import StepForm from './StepForm';
 
 interface PopupModalProps {
   open: boolean;
@@ -140,7 +141,7 @@ const PopupModal: React.FC<PopupModalProps> = ({ open, onClose }) => {
                   }}
                 >
                   <CardContent>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar
                         sx={{
                           backgroundColor: 'red',
@@ -203,61 +204,10 @@ const PopupModal: React.FC<PopupModalProps> = ({ open, onClose }) => {
                       >
                         Access The Story
                       </Typography>
-                    </Box>
+                    </Box> */}
+                    <StepForm />
 
                     {/* Email Input */}
-                    <TextField
-                      fullWidth
-                      label="Email"
-                      variant="outlined"
-                      margin="normal"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      sx={{
-                        background: '#fff',
-                        borderRadius: '10px',
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: '10px',
-                        },
-                      }}
-                    />
-
-                    {/* Password Input */}
-                    <TextField
-                      fullWidth
-                      label="Password"
-                      variant="outlined"
-                      margin="normal"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      sx={{
-                        background: '#fff',
-                        borderRadius: '10px',
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: '10px',
-                        },
-                      }}
-                    />
-
-                    {/* Confirm Password Input */}
-                    <TextField
-                      fullWidth
-                      label="Confirm Password"
-                      variant="outlined"
-                      margin="normal"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      sx={{
-                        background: '#fff',
-                        borderRadius: '10px',
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: '10px',
-                        },
-                      }}
-                    />
-
                     <Box mt={2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
                       <Typography>or</Typography>
                     </Box>
