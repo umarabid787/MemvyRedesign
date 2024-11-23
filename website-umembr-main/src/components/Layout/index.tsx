@@ -91,7 +91,7 @@ export const Layout = ({ children, color }: LayoutProps) => {
           component="main"
           sx={{
             backgroundColor: backgroundColor,  // Apply the color to background dynamically
-            height: isMobile ? 'auto' : '100vh',
+            height: isMobile ? 'auto' : '100%',
             width: '100%',
             minHeight: isMobile ? 'auto' : '100vh',
             overflow: 'visible',
