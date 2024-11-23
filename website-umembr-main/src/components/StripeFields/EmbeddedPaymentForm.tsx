@@ -97,7 +97,7 @@ const EmbeddedPaymentForm: React.FC = () => {
         maxWidth: "400px",
         margin: "auto",
         padding: "20px",
-        background: "#f9f9f9",
+        background: "transparent",
         borderRadius: "8px",
       }}
     >
@@ -117,15 +117,18 @@ const EmbeddedPaymentForm: React.FC = () => {
         <CardElement
           options={{
             style: {
+              
+            
               base: {
                 fontSize: "16px",
-                color: "#424770",
+                
+                color: "white",
                 "::placeholder": {
                   color: "#aab7c4",
                 },
               },
               invalid: {
-                color: "#9e2146",
+                color: "red",
               },
             },
           }}
@@ -142,6 +145,7 @@ const EmbeddedPaymentForm: React.FC = () => {
             border: "none",
             borderRadius: "4px",
             fontSize: "16px",
+            marginTop:"25px"
           }}
         >
           {isProcessing ? "Processing..." : "Pay $88"}

@@ -123,7 +123,7 @@ export default function IconBasedStepper() {
   return (
     <Box sx={{ width: "100%" }}>
       {/* Custom Stepper */}
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mb: 4 }}>
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         {steps.map((step, index) => (
           <Box
             key={step.label}
@@ -160,7 +160,7 @@ export default function IconBasedStepper() {
       </Box>
 
       {/* Render the component based on the current step */}
-      <Box sx={{ mt: 2, mb: 2 }}>
+      <Box sx={{ mt: 1, mb: 1 }}>
         {activeStep === 0 && (
           <CreateAccount open={false} onClose={function (): void {
                       throw new Error("Function not implemented.");
