@@ -10,10 +10,11 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 // import Masonry from '@mui/material/Masonry';
 import Main from './Main';
+import { extendedPalette } from '@/theme/constants';
 
 const MemoriesPage = ({ pageProps: { story } }: InferGetServerSidePropsType<any>) => {
   return (
-    <Layout>
+    <Layout color={extendedPalette.storyBackground}>
       <Head>
         <title>{`${story?.title ?? ''} - Memvy`}</title>
         <meta name='description' content={story?.description ?? ''} />

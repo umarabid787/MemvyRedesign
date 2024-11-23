@@ -46,122 +46,125 @@ export const adminPalette={
   accentColor:"#BA0C2F"
 
 }
-export const extendedPalette = {
-  storyBackground: adminPalette.storyBackgroundColor,
-  backButton: {
-    color: adminPalette.textColor,
-    fontSize: '14px',
-    textTransform: 'none',
-  },
-   editButton: {
-    color: palette.white, // Text color
-    backgroundColor: palette.buttonColor, // Background color
-    fontSize: '14px',
-    textTransform: 'none',
-    borderRadius: '20px',
-    padding: '11px 16px',
-    marginRight: { xs: '0', md: '50px' },
-  },
-  storyTitle: adminPalette.textColor, //Story Title
-    // Date Style
-   dateStyle: {
-    color: adminPalette.textColor,
-    fontSize: '16px',
-    textAlign: 'center',
-    opacity:0.6,
-  },
-  description:{
-    color: adminPalette.textColor, maxWidth: '650px' 
-  },
+// export const extendedPalette = {
+//   storyBackground: adminPalette.storyBackgroundColor,
+//   backButton: {
+//     color: adminPalette.textColor,
+//     opacity:0.7,
+//     fontSize: '14px',
+//     textTransform: 'none',
+//   },
+//    editButton: {
+//     color: palette.white, // Text color
+//     backgroundColor: palette.buttonColor, // Background color
+//     fontSize: '14px',
+//     textTransform: 'none',
+//     borderRadius: '20px',
+//     padding: '11px 16px',
+//     marginRight: { xs: '0', md: '50px' },
+//   },
+//   storyTitle: adminPalette.textColor, //Story Title
+//     // Date Style
+//    dateStyle: {
+//     color: adminPalette.textColor,
+//     fontSize: '16px',
+//     textAlign: 'center',
+//     opacity:0.7,
+//   },
+//   description:{
+//     color: adminPalette.textColor, maxWidth: '650px' 
+//   },
 
-  searchField:{
-    width: '150px',
-    '& .MuiOutlinedInput-root': {
-      backgroundColor: '#1A205A',
-      color: palette.white,
-      marginLeft: '20px',
-      borderRadius: '30px',
-      '& fieldset': { borderColor: '#1A205A' },
-      '&:hover fieldset': { borderColor: '#1A205A' },
-      '&.Mui-focused fieldset': { borderColor: '#1A205A' },
-    },
-    '& input': {
-      color: 'white',
-      padding: '10px 15px',
-      fontSize: '0.9rem',
-    },
-    '& .MuiInputAdornment-root': { backgroundColor: '#1A205A', marginRight: '4px' },
-  },
- filterButton: (filter: any, label: any) => ({
-  textTransform: 'none',
-  backgroundColor: filter === label ? adminPalette.textColor : palette.buttonColor,
-  color: filter === label ? adminPalette.textColor : palette.black,
-  borderRadius: '20px',
-  margin: '8px',
-  '&:hover': {
-    backgroundColor: filter === label ? palette.white : palette.buttonColor,
-    color: filter === label ? palette.black : palette.white,
-  },
-}),
+//   searchField:{
+//     width: '250px',
+//     '& .MuiOutlinedInput-root': {
+//       backgroundColor: adminPalette.textColor,
+//       // color: palette.white,
+//       marginLeft: '20px',
+//       borderRadius: '30px',
+//       // '& fieldset': { borderColor: '#1A205A' },
+//       // '&:hover fieldset': { borderColor: '#1A205A' },
+//       // '&.Mui-focused fieldset': { borderColor: '#1A205A' },
+//     },
+//     '& input': {
+//       color: adminPalette.accentColor,
+//       opacity: 0.7,
+//       padding: '10px 15px',
+//       fontSize: '0.9rem',
+//     },
+//     '& .MuiInputAdornment-root': { backgroundColor: '', marginRight: '4px' },
+//   },
+//  filterButton: (filter: any, label: any) => ({
+//   textTransform: 'none',
+//   backgroundColor: filter === label ? adminPalette.textColor : adminPalette.accentColor,
+//   color: filter === label ? palette.black : palette.black,
+//   borderRadius: '20px',
+//   margin: '8px',
+//   '&:hover': {
+//     backgroundColor: filter === label ? palette.white : adminPalette.accentColor,
+//     color: filter === label ? palette.black : palette.white,
+//   },
+// }),
 
-  viewButton: {
-    textTransform: 'none',
-    color: palette.dirtyWhite, // This corresponds to palette.dirtyWhite
-    '&:hover': {
-      color: palette.secondary, // This corresponds to palette.secondary
-    },
-  },
-  buttonColorGrid:'#2B3672',
-  buttonHoverColor: '#2B3672', 
-  //Card Media Colors
-  cardMediaBackground:'#2B3672',
-  cardMediaColor:adminPalette.textColor,
-  otherButton:'#2B3672',
+//   viewButton: {
+//     textTransform: 'none',
+//     color: adminPalette.accentColor, // This corresponds to palette.dirtyWhite
+//     '&:hover': {
+//       color: adminPalette.textColor,
+//       opacity: 1, // This corresponds to palette.secondary
+//     },
+//   },
+//   buttonColorGrid:'#2B3672',
+//   buttonHoverColor: '#2B3672', 
+//   //Card Media Colors
+//   cardMediaBackground:'#2B3672',
+//   cardMediaColor:adminPalette.textColor,
+//   otherButton:'#2B3672',
 
-  //Card Header Color
-  cardHeaderBackground:'#2B3672',
-  toolBarBackground:'',
-  cardHeaderText:adminPalette.textColor,
-  isDividerCheck: { isDivider: true } as DividerType,
-  isEllipseCheck:{ isEllipseLeft:false} as EllipseType,
-  isEllipseRightCheck:{ isEllipseRight: true} as EllipseType,
-  // ellipseRightImage: "url('../../../../images/EllipseRight.svg')",
-  ellipseLeftGradientColor: '#166BE1',
-  ellipseLeftGradientOpacity: 0.2,
-  ellipseRightGradientColor: '#F1E0FF',
-  ellipseRightGradientOpacity: 0.15,
-  // ellipseBackground2: {
-  //   backgroundImage: "url('../../../../images/Ellipse33.png')",
-  //   backgroundRepeat: 'no-repeat, no-repeat',
-  //   backgroundSize: 'contain, contain',
-  //   // backgroundPosition: 'right -60px',
-  //   // minHeight: '100vh',
-  //   // Responsive adjustments
-  //   '@media (max-width: 600px)': {
-  //     backgroundPosition: 'center',
-  //     backgroundSize: 'cover',
-  //     minHeight: '100vh',
-  //   },
-  // },
-  // ellipseImageLeft: "url('../../../../images/EllipseImage.tsx')",
-  // ellipseBackground1: {
-  //   backgroundImage: "url('../../../../images/Ellipse7.png')",
-  //   backgroundRepeat: 'no-repeat, no-repeat',
-  //   backgroundSize: 'contain, contain',
-  //   backgroundPosition: 'left 20px',
-  //   minHeight: '100vh',
-  //   // Responsive adjustments
-  //   '@media (max-width: 600px)': {
-  //     backgroundPosition: 'center',
-  //     backgroundSize: 'cover',
-  //     minHeight: '50vh',
-  //   },
-  // },
-  audioGradientColor1:adminPalette.accentColor,
-  audioGradientColor2:'#77BCE580',
-  filterIconsColor:'#2B3672',
-  cardIconColor:'#B3BED4',
-};
+//   //Card Header Color
+//   cardHeaderBackground:'#2B3672',
+//   toolBarBackground:adminPalette.storyBackgroundColor,
+//   cardHeaderText:adminPalette.textColor,
+//   isDividerCheck: { isDivider: true } as DividerType,
+//   isEllipseCheck:{ isEllipseLeft:true} as EllipseType,
+//   isEllipseRightCheck:{ isEllipseRight: false} as EllipseType,
+// //   // ellipseRightImage: "url('../../../../images/EllipseRight.svg')",
+// //   ellipseLeftGradientColor: adminPalette.accentColor,
+// //   ellipseLeftGradientOpacity: 0.17,
+// //   ellipseRightGradientColor: '#F1E0FF',
+// //   ellipseRightGradientOpacity: 0.15,
+//   // ellipseBackground2: {
+//   //   backgroundImage: "url('../../../../images/Ellipse33.png')",
+//   //   backgroundRepeat: 'no-repeat, no-repeat',
+//   //   backgroundSize: 'contain, contain',
+//   //   // backgroundPosition: 'right -60px',
+//   //   // minHeight: '100vh',
+//   //   // Responsive adjustments
+//   //   '@media (max-width: 600px)': {
+//   //     backgroundPosition: 'center',
+//   //     backgroundSize: 'cover',
+//   //     minHeight: '100vh',
+//   //   },
+//   // },
+//   // ellipseImageLeft: "url('../../../../images/EllipseImage.tsx')",
+//   // ellipseBackground1: {
+//   //   backgroundImage: "url('../../../../images/Ellipse7.png')",
+//   //   backgroundRepeat: 'no-repeat, no-repeat',
+//   //   backgroundSize: 'contain, contain',
+//   //   backgroundPosition: 'left 20px',
+//   //   minHeight: '100vh',
+//   //   // Responsive adjustments
+//   //   '@media (max-width: 600px)': {
+//   //     backgroundPosition: 'center',
+//   //     backgroundSize: 'cover',
+//   //     minHeight: '50vh',
+//   //   },
+//   // },
+//   audioGradientColor1:adminPalette.accentColor,
+//   audioGradientColor2:'#77BCE580',
+//   filterIconsColor:adminPalette.accentColor,
+//   cardIconColor:'#B3BED4',
+// };
 
 
 // export const extendedPalette = {
@@ -279,112 +282,100 @@ export const extendedPalette = {
 //   filterIconsColor:'#2B3672',
 //   cardIconColor:'#B3BED4',
 // };
-// export const extendedPalette = {
-//   storyBackground: '#1B1B1B',
-//   backButton: {
-//     color: '#A9B4CC',
-//     fontSize: '14px',
-//   },
-//    editButton: {
-//     color: palette.white, // Text color
-//     backgroundColor: '#333333', // Background color
-//     fontSize: '14px',
-//     textTransform: 'none',
-//     borderRadius: '20px',
-//      backdropFilter: 'blur(14px)',
-//     padding: '11px 16px',
-//     marginRight: { xs: '0', md: '50px' },
-//      boxShadow: '0px 4px 14px 0px #00000026',
-//   },
-//   storyTitle: palette.white, //Story Title
-//     // Date Style
-//    dateStyle: {
-//     color: '#666666',
-//     fontSize: '16px',
-//     textAlign: 'center',
-//   },
-//   description:{
-//     color: '#CCCCCC', maxWidth: '650px' 
-//   },
+export const extendedPalette = {
+  storyBackground: adminPalette.storyBackgroundColor,
+  backButton: {
+    color: adminPalette.textColor,
+    opacity:0.7,
+    fontSize: '14px',
+  },
+   editButton: {
+    color: adminPalette.textColor,
+    opacity:0.7, // Text color
+    backgroundColor: adminPalette.storyBackgroundColor, // Background color
+    fontSize: '14px',
+    textTransform: 'none',
+    borderRadius: '20px',
+     backdropFilter: 'blur(10px)',
+    padding: '11px 16px',
+    marginRight: { xs: '0', md: '50px' },
+     boxShadow: '0px 4px 14px 0px #00000029',
+  },
+  storyTitle: adminPalette.textColor,//Story Title
+   dateStyle: {
+    color: adminPalette.textColor,
+    opacity:0.7,
+    fontSize: '16px',
+    textAlign: 'center',
+  },
+  description:{
+    color: adminPalette.textColor, maxWidth: '650px' 
+  },
+  toolBarBackground:'rgba(0, 0, 0, 0.5)',
 
-//   searchField:{
-//     width: '150px',
-//     '& .MuiOutlinedInput-root': {
-//       backgroundColor: '#333333',
-//       color: palette.white,
-//       marginLeft: '20px',
-//       borderRadius: '30px',
-//       '& fieldset': { borderColor: '#333333' },
-//       '&:hover fieldset': { borderColor: '#333333' },
-//       '&.Mui-focused fieldset': { borderColor: '#333333' },
-//     },
-//     '& input': {
-//       color: 'white',
-//       padding: '10px 15px',
-//       fontSize: '0.9rem',
-//     },
-//     '& .MuiInputAdornment-root': { backgroundColor: '#333333', marginRight: '4px' },
-//   },
-//  filterButton: (filter: any, label: any) => ({
-//   textTransform: 'none',
-//   backgroundColor: filter === label ? palette.white : '#333333',
-//   color: filter === label ? palette.black : palette.white,
-//   borderRadius: '20px',
-//   margin: '8px',
-//   '&:hover': {
-//     backgroundColor: filter === label ? palette.white : '#333333',
-//     color: filter === label ? palette.black : palette.white,
-//   },
-// }),
+  searchField:{
+    width: '16rem',
+    '& .MuiOutlinedInput-root': {
+      backgroundColor: adminPalette.storyBackgroundColor,
+      color: palette.white,
+      marginLeft: '20px',
+      borderRadius: '30px',
+      '& fieldset': { borderColor:adminPalette.storyBackgroundColor  },
+      '&:hover fieldset': { borderColor: adminPalette.storyBackgroundColor },
+      '&.Mui-focused fieldset': { borderColor: adminPalette.storyBackgroundColor },
+    },
+    '& input': {
+      color: adminPalette.textColor,
+      padding: '10px 15px',
+      fontSize: '0.9rem',
+    },
+    '& .MuiInputAdornment-root': { backgroundColor: adminPalette.storyBackgroundColor, marginRight: '4px' },
+  },
+ filterButton: (filter: any, label: any) => ({
+  textTransform: 'none',
+  backgroundColor: filter === label ? adminPalette.textColor : adminPalette.storyBackgroundColor,
+  color: filter === label ? palette.black : adminPalette.textColor,
+  borderRadius: '20px',
+  margin: '8px',
+  '&:hover': {
+    backgroundColor: filter === label ? adminPalette.textColor : adminPalette.storyBackgroundColor,
+    color: filter === label ? palette.black : adminPalette.textColor,
+  },
+}),
 
-//   viewButton: {
-//     textTransform: 'none',
-//     color: palette.dirtyWhite, // This corresponds to palette.dirtyWhite
-//     '&:hover': {
-//       color: palette.secondary, // This corresponds to palette.secondary
-//     },
-//   },
-//   buttonColorGrid:'#333333',
-//   buttonHoverColor: '#BA0C2F', 
-//   //Card Media Colors
-//   cardMediaBackground:'#333333',
-//   cardMediaColor:palette.white,
+  viewButton: {
+    textTransform: 'none',
+    color: palette.dirtyWhite, // This corresponds to palette.dirtyWhite
+    '&:hover': {
+      color: palette.secondary, // This corresponds to palette.secondary
+    },
+  },
+  buttonColorGrid: adminPalette.storyBackgroundColor,
+  buttonHoverColor: '#BA0C2F', 
+  
+  cardMediaBackground: adminPalette.storyBackgroundColor,
+  cardMediaColor:adminPalette.textColor,
 
-//   //Card Header Color
-//   cardHeaderBackground:'#333333',
-//   cardHeaderText:palette.white,
+ 
+  cardHeaderBackground: adminPalette.storyBackgroundColor,
+  cardHeaderText:adminPalette.textColor,
 
+  audioGradientColor1: adminPalette.accentColor,
+  audioGradientColor2:'#77BCE580',
 
-//     isDividerCheck: { isDivider: false } as DividerType,
-//   ellipseBackground2: {
-//     backgroundImage: "url('../../../../images/blackelips.png')",
-//     backgroundRepeat: 'no-repeat, no-repeat',
-//     backgroundSize: 'contain, contain',
-//     backgroundPosition: 'right 0px',
-//     minHeight: '100vh',
-//     // Responsive adjustments
-//     '@media (max-width: 600px)': {
-//       backgroundPosition: 'center',
-//       backgroundSize: 'cover',
-//       minHeight: '50vh',
-//     },
-//   },
-//   ellipseBackground1: {
-//     backgroundImage: "url('../../../../images/elipsered.png')",
-//     backgroundRepeat: 'no-repeat, no-repeat',
-//     backgroundSize: 'contain, contain',
-//     backgroundPosition: 'left 20px',
-//     minHeight: '100vh',
-//     // Responsive adjustments
-//     '@media (max-width: 600px)': {
-//       backgroundPosition: 'center',
-//       backgroundSize: 'cover',
-//       minHeight: '50vh',
-//     },
-//   },
-//   cardIconColor:'#BA0C2F',
-//filterIconsColor:'#2B3672',
-// };
+    isDividerCheck: { isDivider: false } as DividerType,
+   isEllipseCheck:{ isEllipseLeft:true} as EllipseType,
+  isEllipseRightCheck:{ isEllipseRight: false} as EllipseType,
+//   // ellipseRightImage: "url('../../../../images/EllipseRight.svg')",
+  ellipseLeftGradientColor: adminPalette.accentColor,
+  ellipseLeftGradientOpacity: 0.17,
+  ellipseRightGradientColor: '#F1E0FF',
+  ellipseRightGradientOpacity: 0.15,
+  
+  cardIconColor: adminPalette.accentColor,
+filterIconsColor:'rgba(102, 102, 102, 1)',
+filterIconsHoverColor:adminPalette.accentColor,
+};
 
 // Example API response
 // const apiResponse = {

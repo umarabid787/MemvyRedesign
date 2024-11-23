@@ -19,7 +19,7 @@ import {
   notificationsSelector,
   storySelector,
 } from '@/store/selectors';
-import { palette } from '@/theme/constants';
+import { extendedPalette, palette } from '@/theme/constants';
 import { cdn_url, checkPermissions, logoutWithFacebook } from '@/utils';
 import { AppBar, Box, ClickAwayListener, Stack, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
@@ -34,6 +34,7 @@ import NotificationBadge from '../../../../public/icons/components/notificationB
 import { CancelModal } from '../CancelModal';
 const MotionAppBar = motion(AppBar);
 import { UseFirstRender, UseIntermitence } from '@/hooks';
+import { usePathname } from 'next/navigation';
 
 export const MuiAppBarDesktop: FC<any> = ({ search, setSearch }) => {
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ export const MuiAppBarDesktop: FC<any> = ({ search, setSearch }) => {
   const prompts = getPropmtsOptions(stories, story);
   const collaborators = getCollaboratorsOptions(user?.collaborators || [], story);
   const { mediaScreenType } = useSelector(memorySelector);
+  const query = router.pathname;
+
+  console.log("query", query)
 
   const setShowDropdown = (event: any) => {
     event.preventDefault();
@@ -217,16 +221,16 @@ export const MuiAppBarDesktop: FC<any> = ({ search, setSearch }) => {
 
     return () => { resizeObserver.disconnect() }
   }, [router?.pathname]);
-
+  console.log("ïntermitttance data", intermitenceData)
   return (
     <>
       <MotionAppBar
         position='fixed'
         elevation={0}
         sx={{
-          background: intermitenceData?.backgroundChange
-            ? 'linear-gradient(0deg, rgba(33,33,33,0) 0%, #131544 50%)'
-            : 'transparent',
+          background: router.pathname.includes('app/story') 
+            ? extendedPalette.storyBackground
+            : 'linear-gradient(0deg, rgba(33,33,33,0) 0%, #131544 50%)',
           backdropFilter: intermitenceData?.backgroundChange ? 'blur(1.5625rem)' : 'none',
           ...showSlide ? { left: 0, width: '99.5%' } : {}
         }}>
@@ -311,7 +315,7 @@ export const MuiAppBarDesktop: FC<any> = ({ search, setSearch }) => {
             </Box>
           )}
         </Box>
-        {showHomeElements && (
+        { !router.pathname.includes('app/story') && showHomeElements && (
           <Stack
             direction={'row'}
             alignItems={'center'}

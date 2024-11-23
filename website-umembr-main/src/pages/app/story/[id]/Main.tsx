@@ -293,11 +293,11 @@ console.log("i am story", story)
         {/* Grid Layout */}
         {/* <GridLayoutCheck /> */}
         <MediaGrid story={story && story} />
-         <Button variant="contained" color="primary" onClick={handleOpen}>
+        {/* <Button variant="contained" color="primary" onClick={handleOpen}>
         Open Modal
       </Button>
 
-      <PopupModal open={modalOpen} onClose={handleClose} /> 
+      <PopupModal open={modalOpen} onClose={handleClose} /> */}
       </div>
       // </div>
 

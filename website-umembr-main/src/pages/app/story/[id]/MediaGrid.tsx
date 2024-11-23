@@ -498,8 +498,10 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
  
 
   useEffect(() => {
+    if(story?.id){
     dispatch(getMemories(story?.id));
-  }, [story, dispatch]);
+  }
+  }, [story?.id, dispatch]);
   console.log("i am the memory loded", memoriesLoaded)
 
   const handleClick = (filterType: string) => {
@@ -593,12 +595,28 @@ const setShowFilters = (event: any) => {
       {/* Search and Filter Controls */}
      <Box sx={{ padding:'10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2,backgroundColor: extendedPalette.toolBarBackground? extendedPalette.toolBarBackground: null, flexDirection: { xs: 'column', sm: 'row' }, borderRadius: '16px' }}>
         {/* Search Field */}
-        <Search
+        {/* <Search
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               onClear={() => setSearch('')}
-              sx={{ width: '21.5rem' }}
-            />
+              sx={{ width: '16rem' }}
+            /> */}
+            {/* Search Field */}
+         <TextField
+           value={search}
+           onChange={(e) => setSearch(e.target.value)}
+          // onClear={() => setSearch('')}
+           placeholder="Search"
+           size="small"
+           sx={{...extendedPalette.searchField}}
+           InputProps={{
+             startAdornment: (
+               <InputAdornment position="start">
+                 <Image src={'/icons/search.svg'} alt={'icon'} width={22} height={22} />
+               </InputAdornment>
+             ),
+           }}
+    />
 <Box
   sx={{
     display: 'flex',
@@ -622,11 +640,11 @@ const setShowFilters = (event: any) => {
       <MuiIconButton
         icon='/icons/filter'
         altIcon='filter'
-        background={palette?.cardBackground}
-        borderColor={palette?.cardBorder}
+        background={extendedPalette.filterIconsColor}
+        borderColor={palette.black}
         width={40}
         height={40}
-        padding={0}
+        // padding={0}
         iconHeight={12}
         iconWidth={20}
         method={(event: any) => setShowFilters(event)}// Toggle state on click
@@ -664,7 +682,7 @@ const setShowFilters = (event: any) => {
   }
    sx={{
       '&:hover': {
-         backgroundColor: extendedPalette.buttonHoverColor,
+         backgroundColor: extendedPalette.filterIconsHoverColor,
         '& .img': {
       filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white+
       // color:"white"
@@ -683,7 +701,7 @@ const setShowFilters = (event: any) => {
   }
    sx={{
       '&:hover': {
-         backgroundColor: extendedPalette.buttonHoverColor,
+          backgroundColor: extendedPalette.filterIconsHoverColor,
         '& .img': {
       filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white+
       // color:"white"
@@ -701,7 +719,7 @@ const setShowFilters = (event: any) => {
   }
    sx={{
       '&:hover': {
-         backgroundColor: extendedPalette.buttonHoverColor,
+        backgroundColor: extendedPalette.filterIconsHoverColor,
         '& .img': {
       filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white+
       // color:"white"
@@ -858,7 +876,7 @@ const setShowFilters = (event: any) => {
       left: 0,
       right: 0,
       height: '15px',
-      background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #2B3672)', // Enhances the blur effect
+      background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0))', // Enhances the blur effect
     },
   }}
 >

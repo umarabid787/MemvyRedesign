@@ -16,8 +16,9 @@ import {
   Button,
   ListItemIcon,
 } from '@mui/material';
-import Stepper from './Stepper';
-
+import FacebookIcon from '@mui/icons-material/Facebook'; // <-- Add this line
+import GoogleIcon from '@mui/icons-material/Google';
+import TickIcon from '../../../../../public/icons/RedTickIcon';
 
 interface PopupModalProps {
   open: boolean;
@@ -114,13 +115,181 @@ const PopupModal: React.FC<PopupModalProps> = ({ open, onClose }) => {
               </Box>
             </Grid>
 
-            {/* Right Card (Payment Form) */}
-            <Grid item xs={12} md={6}>
-              <Stepper />
+              {/* Right Card (Payment Form) */}
+              <Grid item xs={12} md={6}>
+                <Card
+                  sx={{
+                    padding: '20px',
+                    bgcolor: 'rgba(102, 102, 102, 1)',
+                    boxShadow: 'none',
+                  }}
+                >
+                  <CardContent>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Avatar
+                        sx={{
+                          backgroundColor: 'red',
+                          color: 'white',
+                          width: 35,
+                          height: 35,
+                        }}
+                      >
+                        1
+                      </Avatar>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          mx: 1,
+                          wordWrap: 'break-word',
+                          whiteSpace: 'normal',
+                        }}
+                      >
+                        Create Account
+                      </Typography>
+
+                      <Avatar
+                        sx={{
+                          backgroundColor: 'black',
+                          color: 'white',
+                          width: 35,
+                          height: 35,
+                        }}
+                      >
+                        2
+                      </Avatar>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          mx: 1,
+                          wordWrap: 'break-word',
+                          whiteSpace: 'normal',
+                        }}
+                      >
+                        One Time Payment
+                      </Typography>
+
+                      <Avatar
+                        sx={{
+                          backgroundColor: 'black',
+                          color: 'white',
+                          width: 35,
+                          height: 35,
+                        }}
+                      >
+                        3
+                      </Avatar>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          mx: 1,
+                          wordWrap: 'break-word',
+                          whiteSpace: 'normal',
+                        }}
+                      >
+                        Access The Story
+                      </Typography>
+                    </Box>
+
+                    {/* Email Input */}
+                    <TextField
+                      fullWidth
+                      label="Email"
+                      variant="outlined"
+                      margin="normal"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      sx={{
+                        background: '#fff',
+                        borderRadius: '10px',
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '10px',
+                        },
+                      }}
+                    />
+
+                    {/* Password Input */}
+                    <TextField
+                      fullWidth
+                      label="Password"
+                      variant="outlined"
+                      margin="normal"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      sx={{
+                        background: '#fff',
+                        borderRadius: '10px',
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '10px',
+                        },
+                      }}
+                    />
+
+                    {/* Confirm Password Input */}
+                    <TextField
+                      fullWidth
+                      label="Confirm Password"
+                      variant="outlined"
+                      margin="normal"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      sx={{
+                        background: '#fff',
+                        borderRadius: '10px',
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: '10px',
+                        },
+                      }}
+                    />
+
+                    <Box mt={2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
+                      <Typography>or</Typography>
+                    </Box>
+                    <Button
+      variant="contained"
+      fullWidth
+      startIcon={<GoogleIcon />}
+       sx={{
+    marginTop: '10px',
+    mb: 1,
+  // Set the width to increase the button size
+    height: '80px',  // Set the height to make the button taller
+    backgroundColor: 'rgba(34, 34, 34, 0.8)', // Apply RGBA color here
+    '&:hover': {
+      backgroundColor: 'rgba(34, 34, 34, 1)', // Darker shade on hover
+    },
+    borderRadius: '10px', // Rounded corners for the button
+    padding: '25px', // Optional: Increase padding for more internal space
+  }}
+    >
+      Continue with Google
+    </Button>
+    <Button
+  variant="contained"
+  fullWidth
+  startIcon={<FacebookIcon />}
+  sx={{
+    marginTop: '10px',
+    mb: 1,
+  // Set the width to increase the button size
+    height: '80px',  // Set the height to make the button taller
+    backgroundColor: 'rgba(34, 34, 34, 0.8)', // Apply RGBA color here
+    '&:hover': {
+      backgroundColor: 'rgba(34, 34, 34, 1)', // Darker shade on hover
+    },
+    borderRadius: '10px', // Rounded corners for the button
+    padding: '25px', // Optional: Increase padding for more internal space
+  }}
+>
+  Continue with Facebook
+</Button>
+                  </CardContent>
+                </Card>
+              </Grid>
             </Grid>
-          </Grid>
-        </Paper>
-      </Box>
+          </Paper>
+        </Box>
     </Modal>
   );
 };
