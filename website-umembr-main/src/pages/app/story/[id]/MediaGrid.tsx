@@ -426,24 +426,29 @@
 
 // export default MediaGrid;
 import React, { useEffect, useState } from 'react';
-import { Box, Paper, Typography, Button, TextField, Divider, Link, InputAdornment, Avatar, MenuItem, Select } from '@mui/material';
+import { Box, Paper, Typography, Button, TextField, Divider, Link, InputAdornment, Avatar, MenuItem, Select, ClickAwayListener } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import MediaModal from './MediaModal';
-import { extendedPalette } from '@/theme/constants';
+import { extendedPalette, palette } from '@/theme/constants';
 import { styles } from '../../../../components/AppBar/CancelModal/styles';
 import VideoThumbnail from './VideoThumbnail';
 import { getMemories } from '@/store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { memorySelector } from '@/store/selectors';
+import { authSelector, homeSelector, memorySelector } from '@/store/selectors';
 import { cdn_url } from '@/utils';
-import { RtfComponent } from '@/components';
+import { FilterDropdown, MuiIconButton, RtfComponent } from '@/components';
 import Image1Icon from '../../../../../public/icons/image1';
 import Video1Icon from '../../../../../public/icons/video1';
 import Text1Icon from '../../../../../public/icons/test1';
 import Audio1Icon from '../../../../../public/icons/audio1';
-
+import Search from '@/components/AppBar/Search';
+import { getCollaboratorsOptions, getPropmtsOptions } from '@/components/AppBar/constants';
+import Wait1Icon from '../../../../../public/icons/wait1';
+import GridIcon1 from '../../../../../public/icons/gridicom';
+import EditIcon from '../../../../../public/icons/editing1';
+import Audio2Icon from '../../../../../public/icons/audioGradient';
 type MediaType = 'image' | 'audio' | 'video' | 'text';
 
 interface MediaItem {
@@ -472,10 +477,20 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   const { memoriesLoaded } = useSelector(memorySelector);
    const [avatarError, setAvatarError] = useState(false);
  const [openModal, setOpenModal] = useState(false);
+ const [search, setSearch] = useState('');
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
   // Define state for filter and selected media item
   const [filter, setFilter] = useState('All');
+  const { stories } = useSelector(homeSelector);
+  const prompts = getPropmtsOptions(stories, story);
+  const { user } = useSelector(authSelector);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc' | null>(null);
+   const [isOpen, setIsOpen] = useState(false);
+  const [openNotification, setOpenNotification] = useState(false);
+  const [openFilters, setOpenFilters] = useState(false);
+  const [openPeople, setOpenPeople] = useState(false);
+  const collaborators = getCollaboratorsOptions(user?.collaborators || [], story);
+
 
 
    const { isDivider } = extendedPalette.isDividerCheck;
@@ -495,7 +510,21 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     setSelectedMedia(item);
     setOpenModal(true);
   };
-
+    const handleCloseFilters = () => {
+    setOpenFilters(false);
+  };
+  const handleClosePeople = () => {
+    setOpenPeople(false);
+  };
+const setShowFilters = (event: any) => {
+    console.log("I am clicked")
+    event.preventDefault();
+    event.stopPropagation();
+    setOpenFilters((openFilters) => !openFilters);
+    setOpenNotification(false);
+    setIsOpen(false);
+    setOpenPeople(false);
+  };
   const handleCloseModal = () => {
     setOpenModal(false);
     setSelectedMedia(null);
@@ -506,8 +535,26 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   //   (item:any) => filter === 'All' || item.type === filter.toLowerCase()
   // );
  
-  const filteredMediaItems = memoriesLoaded
-  ?.filter((item: any) => filter === 'All' || item.type === filter.toLowerCase())
+  // const filteredMediaItems = memoriesLoaded
+  // ?.filter((item: any) => filter === 'All' || item.type === filter.toLowerCase())
+  // ?.sort((a: any, b: any) => {
+  //   if (!sortOrder) return 0; // No sorting
+  //   switch (sortOrder) {
+  //     case 'asc':
+  //       return a.title.localeCompare(b.title); // Title Ascending
+  //     case 'desc':
+  //       return b.title.localeCompare(a.title); // Title Descending
+  //     default:
+  //       return 0;
+  //   }
+  // });
+ const filteredMediaItems = memoriesLoaded
+  ?.filter((item: any) => 
+    (filter === 'All' || item.type === filter.toLowerCase()) &&
+    (!search || (search.length >= 3 && 
+      (item.title?.toLowerCase().includes(search.toLowerCase()) || 
+       item.username?.toLowerCase().includes(search.toLowerCase()))))
+  )
   ?.sort((a: any, b: any) => {
     if (!sortOrder) return 0; // No sorting
     switch (sortOrder) {
@@ -515,14 +562,12 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
         return a.title.localeCompare(b.title); // Title Ascending
       case 'desc':
         return b.title.localeCompare(a.title); // Title Descending
-      case 'ascDate':
-        return new Date(a.date).getTime() - new Date(b.date).getTime(); // Date Ascending
-      case 'descDate':
-        return new Date(b.date).getTime() - new Date(a.date).getTime(); // Date Descending
       default:
         return 0;
     }
   });
+
+
 
 
 
@@ -542,49 +587,18 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   };
 
   return (
-      <div className='ellipseBackground2'>
+      <div >
     {/* // <Box sx={{ maxWidth: '100%', margin: '0 auto', padding: 2 }}> */}
-    <Box sx={{ maxWidth: '100%', margin: '0 auto', paddingLeft: '20px', paddingRight: '20px', paddingTop: 2, paddingBottom: 2 }}>
+    <Box sx={{ maxWidth: '100%', minheight:'100vh' , margin: '0 auto', paddingLeft: '20px', paddingRight: '20px', paddingTop: 2, paddingBottom: 2 }}>
       {/* Search and Filter Controls */}
-     <Box sx={{ padding:'10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexDirection: { xs: 'column', sm: 'row' }, borderRadius: '16px' }}>
+     <Box sx={{ padding:'10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2,backgroundColor: extendedPalette.toolBarBackground? extendedPalette.toolBarBackground: null, flexDirection: { xs: 'column', sm: 'row' }, borderRadius: '16px' }}>
         {/* Search Field */}
-        <TextField
-          variant="outlined"
-          placeholder="Search"
-          size="small"
-          sx={{...extendedPalette.searchField}}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                 <Image src={'/icons/search.svg'} alt={'icon'} width={22} height={22} />
-              </InputAdornment>
-            ),
-          }}
-        />
-
-        {/* Filter Buttons */}
-        {/* <Box sx={{ display: 'flex', justifyContent: 'center', flexGrow: 1, flexWrap: { xs: 'wrap', sm: 'nowrap' } }}>
-  {['All', 'Image', 'Video', 'Audio', 'Text'].map((label) => (
-    <Button
-      key={label}
-      variant="contained"
-      onClick={() => handleClick(label)}
-      sx={extendedPalette.filterButton(filter, label)}
-    >
-      {label}
-    </Button>
-  ))}
- 
-  <Button
-    variant="contained"
-    onClick={() =>
-      setSortOrder((prev) => (prev === 'asc' ? 'desc' : prev === 'desc' ? null : 'asc'))
-    } 
-    sx={extendedPalette.filterButton(filter, 'Sort')} 
-  >
-    Sort {sortOrder === 'asc' ? '▲' : sortOrder === 'desc' ? '▼' : ''}
-  </Button>
-</Box> */}
+        <Search
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onClear={() => setSearch('')}
+              sx={{ width: '21.5rem' }}
+            />
 <Box
   sx={{
     display: 'flex',
@@ -605,23 +619,24 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
   ))}
 
   {/* Sort Dropdown */}
-  <Box sx={{ ml: 2 }}>
-    <Select
-      value={sortOrder || ''}
-      onChange={(e) => setSortOrder(e.target.value)}
-      displayEmpty
-      variant="outlined"
-      sx={{ ...extendedPalette.filterButton(filter, 'Sort'), textTransform: 'none' }}
-    >
-      <MenuItem value="" disabled>
-        Sort
-      </MenuItem>
-      <MenuItem value="asc">Title Ascending</MenuItem>
-      <MenuItem value="desc">Title Descending</MenuItem>
-      <MenuItem value="ascDate">Date Ascending</MenuItem>
-      <MenuItem value="descDate">Date Descending</MenuItem>
-    </Select>
-  </Box>
+      <MuiIconButton
+        icon='/icons/filter'
+        altIcon='filter'
+        background={palette?.cardBackground}
+        borderColor={palette?.cardBorder}
+        width={40}
+        height={40}
+        padding={0}
+        iconHeight={12}
+        iconWidth={20}
+        method={(event: any) => setShowFilters(event)}// Toggle state on click
+      />
+                <ClickAwayListener onClickAway={handleCloseFilters} disableReactTree={true}>
+        <Box position={'relative'}>
+          <FilterDropdown isOpen={openFilters} listItem={[prompts, collaborators]} />
+        </Box>
+      </ClickAwayListener>
+
 </Box>
 
 
@@ -645,19 +660,14 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     </Button>
   <Button
   startIcon={
-    <Image 
-      src={'/icons/wait.svg'} 
-      alt={'icon'} 
-      width={22} 
-      height={22} 
-      style={{ color: extendedPalette.buttonColorGrid }} // Set the color for the icon
-    />
+   <Wait1Icon color= {extendedPalette.filterIconsColor} className="img" />
   }
    sx={{
       '&:hover': {
-        backgroundColor: extendedPalette.buttonHoverColor,
-        '& img': {
-      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white
+         backgroundColor: extendedPalette.buttonHoverColor,
+        '& .img': {
+      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white+
+      // color:"white"
     }, // Background hover color
       },
     }}
@@ -667,48 +677,42 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
 
 </Button>
 
- <Button
-    startIcon={
-      <Image
-        src={'/icons/grid.svg'}
-        alt={'icon'}
-        width={22}
-        height={22}
-        style={{ color: extendedPalette.buttonColorGrid }} // Explicit color for icon
-      />
-    }
-    sx={{
-      '&:hover': {
-        backgroundColor: extendedPalette.buttonHoverColor,
-        '& img': {
-      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white
-    }, // Background hover color
-      },
-    }}
-  />
  <Button
   startIcon={
-    <Image 
-      src={'/icons/editing.svg'} 
-      alt={'icon'} 
-      width={22} 
-      height={22} 
-      style={{ color: extendedPalette.buttonColorGrid }} // Apply color to the icon directly
-    />
+   <GridIcon1 color= {extendedPalette.filterIconsColor} className="img" />
   }
-  sx={{
-    color: extendedPalette.buttonColorGrid, // Base color for text
-    '&:hover': {
-      backgroundColor: extendedPalette.buttonHoverColor, // Background hover color
-      '& img': {
-      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white
-    },
-    },
-  }}
+   sx={{
+      '&:hover': {
+         backgroundColor: extendedPalette.buttonHoverColor,
+        '& .img': {
+      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white+
+      // color:"white"
+    }, // Background hover color
+      },
+    }}
 >
   {/* Button content */}
-</Button>
 
+
+</Button>
+<Button
+  startIcon={
+   <EditIcon color= {extendedPalette.filterIconsColor} className="img" />
+  }
+   sx={{
+      '&:hover': {
+         backgroundColor: extendedPalette.buttonHoverColor,
+        '& .img': {
+      filter: 'brightness(0) saturate(100%) invert(100%)', // Turn the image white+
+      // color:"white"
+    }, // Background hover color
+      },
+    }}
+>
+  {/* Button content */}
+
+
+</Button>
 </Box>
 
       </Box>
@@ -805,7 +809,7 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
               <VideoThumbnail videoSrc={`${cdn_url}${item.asset}`}/>
             )}
            {item.type === 'audio' && (
-  <div style={{ display: 'flex', alignItems: 'center', width: '100%', gap: '8px' }}>
+  <div style={{ display: 'flex', alignItems: 'center',justifyContent:'center', width: '100%', gap: '5px' }}>
     {/* Left image with responsive size */}
     <div
       style={{
@@ -831,29 +835,34 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
       }}
       onClick={() => handleOpenModal(item)}
     >
-      <Image src={'/icons/audiolay.svg'} alt={'icon'} layout="responsive" width={199} height={55} />
+      <Audio2Icon color= {extendedPalette.audioGradientColor1} color2={extendedPalette.audioGradientColor2} />
+      {/* <Image src={'/icons/audiolay.svg'} alt={'icon'} layout="responsive" width={199} height={55} /> */}
     </div>
   </div>
 )}
             {item.type === 'text' && (
   <Box
-    sx={{
-      maxHeight: { xs: '36px', sm: '39.6px', md: '43.2px' },  // Approximate height for 3 lines
-      width: { xs: '100%', sm: '220px', md: '250px' },        // Responsive width
-      overflow: 'hidden',
-      position: 'relative',
-      '&:after': {
-        content: '""',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '15px',
-       background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #2B3672)',
-      },
-    }}
-  >
-    <Typography
+  sx={{
+    maxHeight: { xs: '36px', sm: '39.6px', md: '43.2px' }, // Approximate height for 3 lines
+    width: { xs: '100%', sm: '100%', md: '100%' }, // Responsive width
+    overflow: 'hidden',
+    position: 'relative',
+    WebkitMaskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)', // Gradual fade effect
+    maskImage: 'linear-gradient(to bottom, black 70%, transparent 100%)',
+    maskSize: '100% 100%',
+    WebkitMaskSize: '100% 100%',
+    '&:after': {
+      content: '""',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      height: '15px',
+      background: 'linear-gradient(to bottom, rgba(43, 54, 114, 0), #2B3672)', // Enhances the blur effect
+    },
+  }}
+>
+    {/* <Typography
       variant="body2"
       color="white"
       sx={{
@@ -867,9 +876,9 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
         WebkitLineClamp: 2, // Limit to 3 lines
         overflow: 'hidden',
       }}
-    >
+    > */}
       <RtfComponent rtf={item?.type === 'text' ? JSON.parse(item?.asset) : ''} label={'p'} />
-    </Typography>
+    {/* </Typography> */}
   </Box>
 )}
 
@@ -881,7 +890,10 @@ const MediaGrid: React.FC<MediaGridProps> = ({ story }) => {
     {selectedMedia && (
         <MediaModal open={openModal} onClose={handleCloseModal} mediaContent={selectedMedia} />
       )}
+
+
     </Box>
+
     </div>
     
   );

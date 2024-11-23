@@ -77,6 +77,7 @@ export const MuiAppBarDesktop: FC<any> = ({ search, setSearch }) => {
   };
 
   const setShowFilters = (event: any) => {
+    console.log("I am clicked")
     event.preventDefault();
     event.stopPropagation();
     setOpenFilters((openFilters) => !openFilters);

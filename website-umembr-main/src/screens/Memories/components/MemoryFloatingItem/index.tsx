@@ -51,7 +51,9 @@ const MemoryFloatingItem: FC<any> = ({ item, story, palette, position }) => {
 
   return (
     <StyledLink
-      href={`/app/story/${story?.url}/?memoryId=${item?.id}`}
+      // href={`/app/story/${story?.url}/?memoryId=${item?.id}`}
+      href={`/app/story/${story?.url}/memory/${item?.id}`}
+
       style={{
         outline: isFocused
           ? !user?.viewMemories?.includes(item?.id)

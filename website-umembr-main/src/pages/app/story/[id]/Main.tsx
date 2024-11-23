@@ -17,7 +17,7 @@ import {
 } from '@/store/actions';
 import { authSelector, currentStorySelector, intermitenceSelector } from '@/store/selectors';
 import { cdn_url } from '@/utils';
-import { BoxProps, Theme, useMediaQuery } from '@mui/material';
+import { Box, BoxProps, Button, Theme, useMediaQuery } from '@mui/material';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { Ref, useCallback, useEffect, useRef, useState } from 'react';
@@ -27,6 +27,10 @@ import { format } from 'date-fns';
 import MediaGrid from './MediaGrid';
 import { extendedPalette } from '@/theme/constants';
 import Image from 'next/image';
+import EllipseImage from '../../../../../public/images/EllipseLeft';
+import EllipseLeftImage from '../../../../../public/images/EllipseLeft';
+import EllipseRightImage from '../../../../../public/images/EllipseRight';
+import PopupModal from './PayWallModal';
 
 
 const theme = createTheme({
@@ -61,6 +65,12 @@ const Main: React.FC = () => {
   const router = useRouter();
   const [tryCode, setTryCode] = useState(true);
   const [foundRole, setFoundRole] = useState(false);
+  const { isEllipseLeft } = extendedPalette.isEllipseCheck;
+   const { isEllipseRight } = extendedPalette.isEllipseRightCheck;
+    const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpen = (): void => setModalOpen(true);
+  const handleClose = (): void => setModalOpen(false);
 
    UseFirstRender(() => {
     if (router.query?.id && !router.query.code) {
@@ -225,8 +235,46 @@ console.log("i am story", story)
 
   return (
     // <ThemeProvider theme={theme}>
-    <div style={{ backgroundColor: extendedPalette.storyBackground, height: '100%', width: '100%' }}>
-      <div style={extendedPalette.ellipseBackground1}>
+    <div style={{ backgroundColor: extendedPalette.storyBackground, minHeight:'200vh' }}>
+
+              
+{isEllipseLeft && (
+        <Box
+          sx={{
+            position: 'absolute',
+            left: '0%', // Adjust the right position as needed
+            top: '20%',  // Center vertically
+            zIndex: 0,   // Behind the content
+            width: '80rem', // Adjust width for the desired size
+            height: '73rem',
+            pointerEvents: 'none', // Make it non-interactive
+            backgroundRepeat: 'no-repeat, no-repeat',
+            backgroundSize: 'contain, contain',
+          }}
+        >
+          <EllipseLeftImage color={extendedPalette.ellipseLeftGradientColor} opacity={extendedPalette.ellipseLeftGradientOpacity} />
+        </Box>)}
+
+
+          {/* Ellipse 2 (Right Center) */}
+          {isEllipseRight && (<Box
+            sx={{
+              position: 'absolute',
+              right: '-9%', // Adjust the right position as needed
+              top: '45%',  // Center vertically
+              // transform: 'translateY(-50%)',
+              zIndex: 0, // Behind the content
+              width: '60%', // Ellipse size
+              height: '73rem',
+              // borderRadius: '50%',
+              // Blue with transparency, adjust color
+              backgroundRepeat: 'no-repeat, no-repeat',
+              pointerEvents: 'none', 
+            }}
+          >
+          <EllipseRightImage color={extendedPalette.ellipseRightGradientColor} opacity={extendedPalette.ellipseRightGradientOpacity} />
+          </Box>)}
+      {/* <div style={extendedPalette.ellipseBackground1}> */}
         {/* StoryHeader Component */}
         <StoryHeader
           imgSrc={`${cdn_url}${story?.cover_image}`}  // Replace with the correct path to your image
@@ -245,8 +293,15 @@ console.log("i am story", story)
         {/* Grid Layout */}
         {/* <GridLayoutCheck /> */}
         <MediaGrid story={story && story} />
+        {/* <Button variant="contained" color="primary" onClick={handleOpen}>
+        Open Modal
+      </Button>
+
+      <PopupModal open={modalOpen} onClose={handleClose} /> */}
       </div>
-      </div>
+      // </div>
+
+      
 
 
   );

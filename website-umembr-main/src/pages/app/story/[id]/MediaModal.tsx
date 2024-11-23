@@ -72,13 +72,14 @@ const StyledDialogTitle = styled(DialogTitle)({
 
 const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [activeContent, setActiveContent] = React.useState<'main' | 'complementary'>('main');
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [showAdditionalContent, setShowAdditionalContent] = useState(false);
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
 
   // Adjust the dialog size based on the content type
-  const dialogMaxWidth = mediaContent.type === 'video' || showAdditionalContent ? 'md' : 'sm';
-  const dialogHeight = mediaContent.type === 'video' || showAdditionalContent ? 'auto' : '400px';
+  // const dialogMaxWidth = mediaContent.type === 'video' || showAdditionalContent ? 'md' : 'sm';
+  // const dialogHeight = mediaContent.type === 'video' || showAdditionalContent ? 'auto' : '400px';
 
   useEffect(() => {
     if (open && mediaContent) {
@@ -99,9 +100,16 @@ const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) 
   if (!mediaContent) return null;
 
   const handleToggleContent = () => {
+  if (!hasAdditionalContent) {
+    // If no additional content, ensure main content is shown
+    setActiveContent('main');
+    setShowAdditionalContent(false); // Ensure additional content is hidden
+  } else {
+    // Toggle additional content visibility when complementary content exists
     setShowAdditionalContent(!showAdditionalContent);
-    setCurrentContentIndex(0); // Reset to the first complementary item when toggling
-  };
+    setCurrentContentIndex(0); // Reset to the first complementary item
+  }
+};
 
   // Check if additional data exists
   const hasAdditionalContent =
@@ -127,24 +135,6 @@ const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) 
 
   return (
    <Dialog open={open} onClose={onClose} maxWidth="md" sx={{ overflow: 'hidden' }}>
-      {/* <StyledDialogTitle>
-        
-        {mediaContent.title}
-        <Avatar src={mediaContent.userImage} alt={mediaContent.username} sx={{ marginRight: 2 }} />
-        <IconButton
-          edge="end"
-          color="inherit"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            top: 0,
-            //right: 8,
-            padding: '6px',
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </StyledDialogTitle> */}
       <StyledDialogTitle>
         <Avatar src={mediaContent.userImage} alt={mediaContent.username} sx={{ marginRight: 2 }} />
         {mediaContent.title}
@@ -211,7 +201,7 @@ const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) 
         )}
 
         {/* Icon to toggle between main and additional content */}
-        {hasAdditionalContent && (
+        {/* {hasAdditionalContent && (
          <div
   onClick={handleToggleContent}
   style={{ marginTop: 16, cursor: 'pointer' }}
@@ -230,8 +220,150 @@ const MediaModal: React.FC<MediaModalProps> = ({ open, onClose, mediaContent }) 
   )}
 </div>
 
-        )}
-      </StyledDialogContent>
+        )} */}
+       {/* {hasAdditionalContent && (
+  <div
+    onClick={handleToggleContent}
+    style={{
+      marginTop: 16,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 8,
+    }}
+  >
+    
+    <Image
+      src={'/icons/home.svg'}
+      alt={'Home Icon'}
+      width={24}
+      height={24}
+      onClick={() => {
+        setActiveContent('main');
+      }}
+    />
+
+    {currentComplementaryContent.type === 'image' && (
+      <Image
+        src={'/icons/image1.svg'}
+        alt={'Complementary Image Icon'}
+        width={24}
+        height={24}
+        onClick={() => {
+          setActiveContent('complementary');
+        }}
+      />
+    )}
+    {currentComplementaryContent.type === 'video' && (
+      <Image
+        src={'/icons/video1.svg'}
+        alt={'Complementary Video Icon'}
+        width={24}
+        height={24}
+        onClick={() => {
+          setActiveContent('complementary');
+        }}
+      />
+    )}
+    {currentComplementaryContent.type === 'audio' && (
+      <Image
+        src={'/icons/audio1.svg'}
+        alt={'Complementary Audio Icon'}
+        width={24}
+        height={24}
+        onClick={() => {
+          setActiveContent('complementary');
+        }}
+      />
+    )}
+    {currentComplementaryContent.type === 'text' && (
+      <Image
+        src={'/icons/text1.svg'}
+        alt={'Complementary Text Icon'}
+        width={24}
+        height={24}
+        onClick={() => {
+          setActiveContent('complementary');
+        }}
+      />
+    )}
+  </div>
+)} */}
+{/* Always show the Home Icon */}
+<div
+onClick={handleToggleContent}
+  style={{
+    marginTop: 16,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  }}
+>
+  <Image
+  
+    src={'/icons/home.svg'}
+    alt={'Home Icon'}
+    width={24}
+    height={24}
+    onClick={() => {
+      setActiveContent('main');
+    }}
+  />
+
+ 
+  {hasAdditionalContent && (
+    <>
+      {currentComplementaryContent.type === 'image' && (
+        <Image
+          src={'/icons/image1.svg'}
+          alt={'Complementary Image Icon'}
+          width={24}
+          height={24}
+          onClick={() => {
+            setActiveContent('complementary');
+          }}
+        />
+      )}
+      {currentComplementaryContent.type === 'video' && (
+        <Image
+          src={'/icons/video1.svg'}
+          alt={'Complementary Video Icon'}
+          width={24}
+          height={24}
+          onClick={() => {
+            setActiveContent('complementary');
+          }}
+        />
+      )}
+      {currentComplementaryContent.type === 'audio' && (
+        <Image
+          src={'/icons/audio1.svg'}
+          alt={'Complementary Audio Icon'}
+          width={24}
+          height={24}
+          onClick={() => {
+            setActiveContent('complementary');
+          }}
+        />
+      )}
+      {currentComplementaryContent.type === 'text' && (
+        <Image
+          src={'/icons/text1.svg'}
+          alt={'Complementary Text Icon'}
+          width={24}
+          height={24}
+          onClick={() => {
+            setActiveContent('complementary');
+          }}
+        />
+      )}
+    </>
+  )}
+</div>
+
+
+   </StyledDialogContent>
     </Dialog>
   );
 };
