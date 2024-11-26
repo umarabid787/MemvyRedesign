@@ -10,7 +10,8 @@ type ContainerType = {
 
 const AppContainer: FC<ContainerType> = ({ children, store }) => {
   return (
-    <Provider store={store}>
+    <Provider store={store} >
+     
       <ThemeProvider theme={theme}>{children}</ThemeProvider>;
     </Provider>
   );

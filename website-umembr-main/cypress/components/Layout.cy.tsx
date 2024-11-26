@@ -1163,7 +1163,7 @@ describe('Layout component in memorie create', () => {
 
   it('Renders Layout in memorie', () => {
     mount(
-      <AppContainer store={store}>
+      <AppContainer store={store} >
         <Layout>
           <Typography>Layout</Typography>
         </Layout>

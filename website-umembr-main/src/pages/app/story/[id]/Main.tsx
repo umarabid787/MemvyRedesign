@@ -235,7 +235,7 @@ console.log("i am story", story)
 
   return (
     // <ThemeProvider theme={theme}>
-    <div style={{ backgroundColor: extendedPalette.storyBackground, minHeight:'200vh' }}>
+    <div style={{ backgroundColor: extendedPalette.storyBackground }}>
 
               
 {isEllipseLeft && (

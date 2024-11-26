@@ -81,7 +81,15 @@ export const Layout = ({ children, color }: LayoutProps) => {
 
   // If a color is provided, use it, otherwise fallback to default logic
   const backgroundColor = color || palette.background;
+  useEffect(() => {
+    // Dynamically set the body background color
+    document.body.style.backgroundColor = backgroundColor;
 
+    // Clean up effect to reset to default color
+    return () => {
+      document.body.style.backgroundColor = '#131544'; // Default color
+    };
+  }, [backgroundColor]);
   return (
     <>
       <MuiAppBar  />
