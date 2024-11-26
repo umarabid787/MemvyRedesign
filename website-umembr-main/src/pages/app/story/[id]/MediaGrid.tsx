@@ -425,7 +425,7 @@
 // };
 
 // export default MediaGrid;
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Paper, Typography, Button, TextField, Divider, Link, InputAdornment, Avatar, MenuItem, Select, ClickAwayListener } from '@mui/material';
 import Masonry from '@mui/lab/Masonry';
 import { format } from 'date-fns';
@@ -531,28 +531,6 @@ const setShowFilters = (event: any) => {
     setOpenModal(false);
     setSelectedMedia(null);
   };
-    const types = useMemo(() => {
-    const types = [
-      {
-        id: 'video',
-        label: 'Video',
-      },
-      {
-        id: 'image',
-        label: 'Image',
-      },
-      {
-        id: 'audio',
-        label: 'Audio',
-      },
-      {
-        id: 'text',
-        label: 'Text',
-      },
-    ];
-
-    return types.filter((type) => memoriesLoaded?.includes(type.id));
-  }, [memoriesLoaded?.length]);
 
 
   // const filteredMediaItems = memoriesLoaded?.filter(
@@ -673,7 +651,7 @@ const setShowFilters = (event: any) => {
       />
                 <ClickAwayListener onClickAway={handleCloseFilters} disableReactTree={true}>
         <Box position={'relative'}>
-          <FilterDropdown isOpen={openFilters} listItem={[prompts, collaborators ,types]} />
+          <FilterDropdown isOpen={openFilters} listItem={[prompts, collaborators]} />
         </Box>
       </ClickAwayListener>
 

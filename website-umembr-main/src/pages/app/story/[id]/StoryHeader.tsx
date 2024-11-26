@@ -208,11 +208,13 @@ import {
   Avatar,
   AvatarGroup,
   ThemeProvider,
+  Divider,
 } from '@mui/material';
 import Image from 'next/image';
 import { createTheme } from '@mui/material/styles';
 import { format } from 'date-fns';
 import { extendedPalette } from '@/theme/constants';
+import EditMemIcon from '../../../../../public/icons/editMem';
 
 interface StoryHeaderProps {
   imgSrc: string; // First image source (Extra Asset 1)
@@ -309,12 +311,7 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
                 ...extendedPalette.editButton,
               }}
               startIcon={
-                <Image
-                  src={'/icons/editMem.svg'}
-                  alt={'icon'}
-                  width={13}
-                  height={13}
-                />
+                <EditMemIcon color={extendedPalette.buttonColorGrid} className='img'></EditMemIcon>
               }
             >
               Edit this Memvy
@@ -343,6 +340,11 @@ const StoryHeader: React.FC<StoryHeaderProps> = ({
                   style={{ objectFit: 'contain' }}
                 />
               )}
+               <Divider
+        orientation="vertical"
+        flexItem
+        sx={{ height: '100px', borderColor: 'rgba(51, 51, 51, 1)', margin: '0 20px' }} // Adjust height and color as needed
+      />
               {secondImgSrc && (
                 <Image
                   src={secondImgSrc}
