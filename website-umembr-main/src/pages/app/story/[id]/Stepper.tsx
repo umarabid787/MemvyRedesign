@@ -102,10 +102,12 @@ import Typography from "@mui/material/Typography";
 import EmbeddedPaymentForm from "../../../../components/StripeFields/EmbeddedPaymentForm";
 
 // Import your existing components
-import CreateAccount from "./CreateAccount";
+
 import Thankyou from "./Thankyou";
 import { Elements } from "@stripe/react-stripe-js";
 import stripePromise from "@/utils/stipe";
+import LoginForm from "./LoginForm";
+import CreateAccount from "./CreateAccount";
 
 const steps = [
   { label: "Create Account", icon: "1" },
@@ -180,6 +182,10 @@ export default function IconBasedStepper() {
                   } } />
         )}
       </Box>
+
+      {/* <CreateAccount open={true} onClose={function (): void {
+        throw new Error("Function not implemented.");
+      } }/> */}
     </Box>
   );
 }

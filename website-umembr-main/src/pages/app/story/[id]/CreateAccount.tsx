@@ -67,7 +67,8 @@ if(showLogin)
     paddingTop: '2px',
     marginTop: '5px',
     backgroundColor: 'white',
-    borderRadius: '10px',
+    height:"50px",
+    borderRadius: '8px',
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         border: 'none', // Remove border
@@ -106,8 +107,9 @@ if(showLogin)
   sx={{
     paddingTop: '2px',
     marginTop: '5px',
+    height:"50px",
     backgroundColor: 'white',
-    borderRadius: '10px',
+    borderRadius: '8px',
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         border: 'none', // Remove border
@@ -146,7 +148,8 @@ if(showLogin)
         paddingTop: '2px',
         marginTop: '5px',
         backgroundColor: 'white',
-        borderRadius: '10px',
+        height:"50px",
+        borderRadius: '8px',
         '& .MuiOutlinedInput-root': {
           '& fieldset': {
             border: 'none', // Remove border
@@ -170,31 +173,12 @@ if(showLogin)
       }}
     />
   
+  <Typography style={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)', marginTop:"5px",fontWeight:"bold"}}>
+     or
+    </Typography>
+    
 
-    <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
-    {/* <button>Sign Up</button> */}
-    <Button
-      
-      fullWidth
-      sx={{
-        marginTop: '12px',
-        mb: 1,
-        color:"white",
-        height: '50px', 
-        backgroundColor: '#BA0C2F', 
-        '&:hover': {
-          backgroundColor: 'rgba(34, 34, 34, 1)', 
-        },
-        borderRadius: '10px', 
-        padding: '25px', 
-        textTransform:"none",
-      }}> Sign Up
-    </Button>
-    </Box>
-
-    {/* <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
-      <Typography>or</Typography>
-    </Box> */}
+  
     <Button
       
       fullWidth
@@ -203,7 +187,7 @@ if(showLogin)
         marginTop: '12px',
         mb: 1,
         color:"white",
-        height: '50px', 
+        height: '70px', 
         backgroundColor: 'rgba(34, 34, 34, 0.8)', 
         '&:hover': {
           backgroundColor: 'rgba(34, 34, 34, 1)', 
@@ -220,7 +204,7 @@ if(showLogin)
         marginTop: '5px',
         mb: 1,
         color:"white",
-        height: '50px', 
+        height: '70px', 
         backgroundColor: 'rgba(34, 34, 34, 0.8)',
         '&:hover': {
           backgroundColor: 'rgba(34, 34, 34, 1)', 
@@ -230,12 +214,10 @@ if(showLogin)
       }}>
       Continue with Facebook
     </Button>
-
-    <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
-    <Typography>Already Registered?
-    <Link style={{color:"red", cursor:"pointer" , fontWeight:"bold"}} onClick={OpenLogin}> {""}Sign In</Link>
-    </Typography>
-    </Box>
+    {/* <Typography style={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)', marginTop:"1px",fontWeight:"bold"}}>
+      Already have an Account? 
+     <Link onClick={OpenLogin}>Log In</Link>
+    </Typography> */}
   </CardContent>
 </Card>
 

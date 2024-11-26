@@ -18,6 +18,7 @@ import {
   ListItemIcon,
 } from '@mui/material';
 import Stepper from './Stepper';
+import LoginForm from './LoginForm';
 
 
 interface PopupModalProps {
@@ -121,7 +122,9 @@ const PopupModal: React.FC<PopupModalProps> = ({ open, onClose }) => {
 
             {/* Right Card (Payment Form) */}
             <Grid item xs={12} md={6}>
-              <Stepper />
+              <LoginForm open={false} onClose={function (): void {
+                throw new Error('Function not implemented.');
+              } } />
             </Grid>
           </Grid>
         </Paper>

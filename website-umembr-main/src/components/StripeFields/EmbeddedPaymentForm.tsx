@@ -144,16 +144,16 @@ const EmbeddedPaymentForm: React.FC = () => {
           style={{
             padding: "10px",
             width: "100%",
-           
+            height:"70px",
             backgroundColor: "#BA0C2F",
             color: "#fff",
             border: "none",
             borderRadius: "8px",
-            fontSize: "16px",
-            marginTop:"25px"
+            fontSize: "12px",
+            marginTop:"55px"
           }}
         >
-          {isProcessing ? "Processing..." : "Pay $88"}
+          {isProcessing ? "Processing..." : "Complete Your Purchase"}
         </button>
       </form>
     </div>

@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import CreateAccount from "./CreateAccount";
+import Stepper from "./Stepper";
 import {
     Modal,
     Box,
@@ -21,6 +22,7 @@ import {
 
 
 
+
   interface PopupModalProps {
     open: boolean;
     onClose: () => void;
@@ -30,16 +32,14 @@ import {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const [showLogin , setShowLogin]=useState(false);
+    const [showSignup , setShowSignup]=useState(false);
 
-    function OpenLogin (){
-  setShowLogin(true);
+    function OpenSignup (){
+  setShowSignup(true);
     }
-  if(showLogin)
+  if(showSignup)
   {
-    return <CreateAccount open={true} onClose={function (): void {
-      throw new Error("Function not implemented.");
-    } }/>;
+    return <Stepper/>;
   }
 
     return(
@@ -47,12 +47,13 @@ import {
 <Card
   sx={{
     padding: '12px',
+    paddingTop:"4px",
     bgcolor: 'rgba(102, 102, 102, 1)',
     boxShadow: 'none',
-    height:"54vh"
+    height:"auto"
   }}>
   <CardContent>
-
+   <h2 style={{fontFamily:"inter", color:"white", marginBottom:"3px"}}>Log In</h2>
     {/* Email Input */}
     <TextField
   label="Email" // Show label only if email is empty
@@ -67,15 +68,17 @@ import {
   sx={{
     paddingTop: '2px',
     marginTop: '5px',
-    backgroundColor: 'white',
-    borderRadius: '10px',
+    height:"50px",
+    border:"1px solid white",
+    backgroundColor: 'black',
+    borderRadius: '8px',
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         border: 'none', // Remove border
       },
     },
     '& .MuiInputLabel-root': {
-        color: 'rgba(0, 0, 0, 0.5)', // Default label color
+        color: '#EEEEEE', // Default label color
       position: 'absolute',
       left: '14px',
       transition: 'all 0.2s ease-in-out',
@@ -106,16 +109,18 @@ import {
   }}
   sx={{
     paddingTop: '2px',
+    height:"50px",
     marginTop: '5px',
-    backgroundColor: 'white',
-    borderRadius: '10px',
+    backgroundColor: 'black',
+    border:"1px solid white",
+    borderRadius: '8px',
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
         border: 'none', // Remove border
       },
     },
     '& .MuiInputLabel-root': {
-      color: 'rgba(0, 0, 0, 0.5)', // Default label color
+      color: ' #EEEEEE', // Default label color
       position: 'absolute',
       left: '14px',
       transition: 'all 0.2s ease-in-out',
@@ -131,74 +136,105 @@ import {
   }}
 />
 
-
-  
-
-
-    <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
+<Box sx={{ display: 'flex', justifyContent: 'center', color: 'black' }}>
     {/* <button>Sign Up</button> */}
     <Button
       
       fullWidth
       sx={{
-        marginTop: '25px',
-        mb: 1,
-        color:"white",
-        height: '50px', 
-        backgroundColor: '#BA0C2F', 
-        '&:hover': {
-          backgroundColor: 'rgba(34, 34, 34, 1)', 
-        },
-        borderRadius: '10px', 
-        padding: '25px', 
-        textTransform:"none",
-      }}> Sign In
-    </Button>
-    </Box>
-
-    {/* <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
-      <Typography>or</Typography>
-    </Box> */}
-    <Button
-      
-      fullWidth
-      startIcon={ <img src='/icons/devicon_google.svg'/>}
-      sx={{
-        marginTop: '32px',
-        mb: 1,
-        color:"white",
-        height: '50px', 
-        backgroundColor: 'rgba(34, 34, 34, 0.8)', 
-        '&:hover': {
-          backgroundColor: 'rgba(34, 34, 34, 1)', 
-        },
-        borderRadius: '10px', 
-        padding: '25px', 
-      }}>
-      Continue with Google
-    </Button>
-    <Button
-      fullWidth
-      startIcon={ <img src='/icons/Vector.svg'/>}
-      sx={{
         marginTop: '5px',
         mb: 1,
-        color:"white",
+        color:"black",
+        border:"1px solid black",
         height: '50px', 
-        backgroundColor: 'rgba(34, 34, 34, 0.8)',
+        background: '#FFFF',
         '&:hover': {
           backgroundColor: 'rgba(34, 34, 34, 1)', 
         },
-        borderRadius: '10px', 
-        padding: '25px',
-      }}>
-      Continue with Facebook
+        borderRadius: '8px', 
+        padding: '25px', 
+        textTransform:"none",
+      }}> Continue
     </Button>
-
-    <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)', marginTop:"15px"}}>
-    <Typography>Not Registered Yet?
-    <Link style={{color:"red", cursor:"pointer" , fontWeight:"bold"}} onClick={OpenLogin}> {""}Sign Up</Link>
+    </Box>
+    <Typography style={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)', marginTop:"5px"}}>
+    <Link style={{color:"#BA0C2F", cursor:"pointer" , fontWeight:"bold"}}> {""}Forgot Password?</Link>
     </Typography>
+    <Typography style={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)', marginTop:"5px",fontWeight:"bold"}}>
+     or
+    </Typography>
+
+
+    <div
+  style={{
+    display: 'flex',
+    gap: '10px', // Adds spacing between the buttons
+    marginTop: '10px', // Adjust spacing above the buttons
+  }}
+>
+  <Button
+    fullWidth
+    endIcon={<img src='/icons/devicon_google.svg' />}
+    sx={{
+      color: 'white',
+      height: '48px',
+      border:"1px solid black",
+      backgroundColor: 'rgba(34, 34, 34, 0.8)',
+      '&:hover': {
+        backgroundColor: 'rgba(34, 34, 34, 1)',
+      },
+      borderRadius: '8px',
+      padding: '25px',
+    }}
+  >
+    Continue with
+  </Button>
+  <Button
+    fullWidth
+    endIcon={<img src='/icons/Vector.svg' />}
+    sx={{
+      color: 'white',
+      height: '48px',
+      border:"1px solid black",
+      backgroundColor: 'rgba(34, 34, 34, 0.8)',
+      '&:hover': {
+        backgroundColor: 'rgba(34, 34, 34, 1)',
+      },
+      borderRadius: '10px',
+      padding: '25px',
+    }}
+  >
+    Continue with
+  </Button>
+</div>
+
+
+    <Box mt={1.2} sx={{ display: 'flex', color: 'rgba(238, 238, 238, 1)', marginTop:"35px", fontWeight:"bold"}}>
+    <Typography style={{fontWeight:"bold"}}>
+        New to Memvy?
+    </Typography>
+    </Box>
+    <Box sx={{ display: 'flex', justifyContent: 'center', color: 'white' }}>
+    {/* <button>Sign Up</button> */}
+    <Button
+      onClick={OpenSignup}
+      fullWidth
+      sx={{
+        marginTop: '15px',
+        mb: 1,
+        color:"white",
+      
+        height: '60px', 
+        background: '#BA0C2F',
+        
+        '&:hover': {
+          backgroundColor: 'rgba(34, 34, 34, 1)', 
+        },
+        borderRadius: '8px', 
+        padding: '25px', 
+        textTransform:"none",
+      }}> Create Your Account
+    </Button>
     </Box>
   </CardContent>
 </Card>
