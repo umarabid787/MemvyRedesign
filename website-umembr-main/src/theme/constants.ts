@@ -41,9 +41,9 @@ export const palette = {
   
 };
 export const adminPalette={
-  storyBackgroundColor: "#333",
+  storyBackgroundColor: "#673409",
   textColor:"#fff",
-  accentColor:"#BA0C2F"
+  accentColor:"#bf5700"
 
 }
 // export const extendedPalette = {

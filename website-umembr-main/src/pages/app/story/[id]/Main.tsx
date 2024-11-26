@@ -243,10 +243,10 @@ console.log("i am story", story)
           sx={{
             position: 'absolute',
             left: '0%', // Adjust the right position as needed
-            top: '10%',  // Center vertically
+            top: '0%',  // Center vertically
             zIndex: 0,   // Behind the content
-            width: '200px', // Adjust width for the desired size
-            height: '150px',
+            width: '80rem', // Adjust width for the desired size
+            height: '20%',
             pointerEvents: 'none', // Make it non-interactive
             backgroundRepeat: 'no-repeat, no-repeat',
             backgroundSize: 'contain, contain',
@@ -276,7 +276,7 @@ console.log("i am story", story)
           </Box>)}
       {/* <div style={extendedPalette.ellipseBackground1}> */}
         {/* StoryHeader Component */}
-        <StoryHeader
+        {/* <StoryHeader
           imgSrc={`${cdn_url}${story?.cover_image}`}  // Replace with the correct path to your image
           title={story?.title}
           createdDate={story?.created_at}
@@ -288,7 +288,23 @@ console.log("i am story", story)
             { src: "/assets/Ellipse 54.png", alt: "Collaborator 4" },
           ]}
           onBackClick={handleBackClick}
-        />
+        /> */}
+<StoryHeader
+  coverImage={story?.cover_image ? `${cdn_url}${story.cover_image}` : ''} // Fallback cover image
+  imgSrc={story?.extraAsset1 ? `${cdn_url}${story.extraAsset1}` : ''} // First extra image
+  secondImgSrc={story?.extraAsset2 ? `${cdn_url}${story.extraAsset2}` : ''} // Second extra image
+  title={story?.title}
+  createdDate={story?.created_at}
+  description={story?.description}
+  collaborators={[
+    { src: "/assets/Ellipse 51.png", alt: "Collaborator 1" },
+    { src: "/assets/Ellipse 52.png", alt: "Collaborator 2" },
+    { src: "/assets/Ellipse 56.png", alt: "Collaborator 3" },
+    { src: "/assets/Ellipse 54.png", alt: "Collaborator 4" },
+  ]}
+  onBackClick={handleBackClick}
+/>
+
 
         {/* Grid Layout */}
         {/* <GridLayoutCheck /> */}
