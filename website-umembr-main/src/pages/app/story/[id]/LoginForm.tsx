@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import CreateAccount from "./CreateAccount";
 import {
     Modal,
     Box,
@@ -17,7 +18,6 @@ import {
     ListItemIcon,
     Link,
   } from '@mui/material';
-import LoginForm from "./LoginForm";
 
 
 
@@ -26,21 +26,22 @@ import LoginForm from "./LoginForm";
     onClose: () => void;
   }
 
-  const CreateAccount: React.FC<PopupModalProps> = ({ open, onClose }) => {
+  const LoginForm: React.FC<PopupModalProps> = ({ open, onClose }) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [showLogin , setShowLogin]=useState(false);
 
-  function OpenLogin (){
-setShowLogin(true);
+    function OpenLogin (){
+  setShowLogin(true);
+    }
+  if(showLogin)
+  {
+    return <CreateAccount open={true} onClose={function (): void {
+      throw new Error("Function not implemented.");
+    } }/>;
   }
-if(showLogin)
-{
-  return <LoginForm open={false} onClose={function (): void {
-    throw new Error("Function not implemented.");
-  } }/>;
-}
+
     return(
 
 <Card
@@ -130,46 +131,9 @@ if(showLogin)
   }}
 />
 
-    {/* Confirm Password Input */}
-    <TextField
-      label='Confirm Password'
-      variant='outlined'
-      margin='normal'
-      type='password'
-      value={confirmPassword}
-      onChange={(e) => setConfirmPassword(e.target.value)}
-      fullWidth
-      InputLabelProps={{
-        shrink: false, // Disable the default shrink behavior
-      }}
-      sx={{
-        paddingTop: '2px',
-        marginTop: '5px',
-        backgroundColor: 'white',
-        borderRadius: '10px',
-        '& .MuiOutlinedInput-root': {
-          '& fieldset': {
-            border: 'none', // Remove border
-          },
-        },
-        '& .MuiInputLabel-root': {
-          color: 'rgba(0, 0, 0, 0.5)', // Default label color
-      position: 'absolute',
-      left: '14px',
-      transition: 'all 0.2s ease-in-out',
-      top: confirmPassword ? '1px' : '50%', // Position based on whether there's input
-      transform: confirmPassword ? 'translateY(0)' : 'translateY(-50%)', // Adjust vertical alignment
-      fontSize: confirmPassword ? '12px' : '16px', // Adjust size for shrunken state
-        },
-    
-        '& .MuiOutlinedInput-root.Mui-focused': {
-          '& fieldset': {
-            border: 'none', // Ensure no border on focus
-          },
-        },
-      }}
-    />
+
   
+
 
     <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
     {/* <button>Sign Up</button> */}
@@ -177,7 +141,7 @@ if(showLogin)
       
       fullWidth
       sx={{
-        marginTop: '12px',
+        marginTop: '25px',
         mb: 1,
         color:"white",
         height: '50px', 
@@ -188,7 +152,7 @@ if(showLogin)
         borderRadius: '10px', 
         padding: '25px', 
         textTransform:"none",
-      }}> Sign Up
+      }}> Sign In
     </Button>
     </Box>
 
@@ -200,7 +164,7 @@ if(showLogin)
       fullWidth
       startIcon={ <img src='/icons/devicon_google.svg'/>}
       sx={{
-        marginTop: '12px',
+        marginTop: '32px',
         mb: 1,
         color:"white",
         height: '50px', 
@@ -231,9 +195,9 @@ if(showLogin)
       Continue with Facebook
     </Button>
 
-    <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)' }}>
-    <Typography>Already Registered?
-    <Link style={{color:"red", cursor:"pointer" , fontWeight:"bold"}} onClick={OpenLogin}> {""}Sign In</Link>
+    <Box mt={1.2} sx={{ display: 'flex', justifyContent: 'center', color: 'rgba(238, 238, 238, 1)', marginTop:"15px"}}>
+    <Typography>Not Registered Yet?
+    <Link style={{color:"red", cursor:"pointer" , fontWeight:"bold"}} onClick={OpenLogin}> {""}Sign Up</Link>
     </Typography>
     </Box>
   </CardContent>
@@ -241,4 +205,4 @@ if(showLogin)
 
     )
 };
-export default CreateAccount;
+export default LoginForm;

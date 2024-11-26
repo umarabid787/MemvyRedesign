@@ -8,6 +8,7 @@ import {
   PaymentRequestButtonElement,
 } from "@stripe/react-stripe-js";
 import {  PaymentRequest } from '@stripe/stripe-js';
+import { colors } from "@mui/material";
 
 
 const EmbeddedPaymentForm: React.FC = () => {
@@ -114,15 +115,16 @@ const EmbeddedPaymentForm: React.FC = () => {
         <label style={{ display: "block", marginBottom: "10px" }}>
           Card Details:
         </label>
+        <div style={{backgroundColor:'white', padding:'10px', borderRadius:'6px'}}>
         <CardElement
           options={{
             style: {
               
-            
+              
               base: {
                 fontSize: "16px",
-                
-                color: "white",
+                backgroundColor:'white',
+                color: "black",
                 "::placeholder": {
                   color: "#aab7c4",
                 },
@@ -132,7 +134,9 @@ const EmbeddedPaymentForm: React.FC = () => {
               },
             },
           }}
-        />
+          />
+
+          </div>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <button
           type="submit"
@@ -140,10 +144,11 @@ const EmbeddedPaymentForm: React.FC = () => {
           style={{
             padding: "10px",
             width: "100%",
-            backgroundColor: "#5469d4",
+           
+            backgroundColor: "#BA0C2F",
             color: "#fff",
             border: "none",
-            borderRadius: "4px",
+            borderRadius: "8px",
             fontSize: "16px",
             marginTop:"25px"
           }}
