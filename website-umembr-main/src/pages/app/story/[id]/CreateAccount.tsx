@@ -1,23 +1,14 @@
 import React, {useState} from "react";
 import {
-    Modal,
-    Box,
-    Paper,
-    Grid,
     Card,
     CardContent,
     Typography,
     TextField,
-    Avatar,
-    List,
-    ListItem,
-    ListItemText,
-    Divider,
     Button,
-    ListItemIcon,
-    Link,
+  
   } from '@mui/material';
-import LoginForm from "./LoginForm";
+// import LoginForm from "./LoginForm";
+import { theme } from "@/theme";
 
 
 
@@ -26,21 +17,21 @@ import LoginForm from "./LoginForm";
     onClose: () => void;
   }
 
-  const CreateAccount: React.FC<PopupModalProps> = ({ open, onClose }) => {
+  const CreateAccount: React.FC<PopupModalProps> = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const [showLogin , setShowLogin]=useState(false);
+    // const [showLogin , setShowLogin]=useState(false);
 
-  function OpenLogin (){
-setShowLogin(true);
-  }
-if(showLogin)
-{
-  return <LoginForm open={false} onClose={function (): void {
-    throw new Error("Function not implemented.");
-  } }/>;
-}
+//   function OpenLogin (){
+// setShowLogin(true);
+//   }
+// if(showLogin)
+// {
+//   return <LoginForm open={false} onClose={function (): void {
+//     throw new Error("Function not implemented.");
+//   } }/>;
+// }
     return(
 
 <Card
@@ -48,9 +39,19 @@ if(showLogin)
     padding: '12px',
     bgcolor: 'rgba(102, 102, 102, 1)',
     boxShadow: 'none',
-    height:"54vh"
+    height:"50vh",
+    [theme.breakpoints.down('sm')]:{
+    padding:0,
+    height:"46vh"
+    }
   }}>
-  <CardContent>
+  <CardContent
+     sx={{
+      padding: { xs: 0, sm: '16px' },  '&:last-child': {
+        paddingBottom: 0, 
+      },
+    }}
+  >
 
     {/* Email Input */}
     <TextField

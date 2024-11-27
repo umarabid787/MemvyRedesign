@@ -100,8 +100,11 @@ const EmbeddedPaymentForm: React.FC = () => {
         padding: "20px",
         background: "transparent",
         borderRadius: "8px",
+        
       }}
     >
+
+      
       {canMakePayment && paymentRequest && (
         <div style={{ marginBottom: "20px" }}>
           <h4>Pay with Google Pay:</h4>

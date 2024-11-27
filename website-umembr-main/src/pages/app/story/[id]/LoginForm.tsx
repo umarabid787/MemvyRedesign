@@ -2,23 +2,15 @@ import React, {useState} from "react";
 import CreateAccount from "./CreateAccount";
 import Stepper from "./Stepper";
 import {
-    Modal,
     Box,
-    Paper,
-    Grid,
     Card,
     CardContent,
     Typography,
     TextField,
-    Avatar,
-    List,
-    ListItem,
-    ListItemText,
-    Divider,
     Button,
-    ListItemIcon,
     Link,
   } from '@mui/material';
+import { theme } from "@/theme";
 
 
 
@@ -31,7 +23,7 @@ import {
   const LoginForm: React.FC<PopupModalProps> = ({ open, onClose }) => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    
     const [showSignup , setShowSignup]=useState(false);
 
     function OpenSignup (){
@@ -50,9 +42,18 @@ import {
     paddingTop:"4px",
     bgcolor: 'rgba(102, 102, 102, 1)',
     boxShadow: 'none',
-    height:"auto"
+    height:"auto",
+    [theme.breakpoints.down('sm')]:{
+     padding:'0px'
+    }
   }}>
-  <CardContent>
+  <CardContent 
+    sx={{
+      padding: { xs: 0, sm: '16px' },  '&:last-child': {
+        paddingBottom: 0, 
+      },
+    }}
+  >
    <h2 style={{fontFamily:"inter", color:"white", marginBottom:"3px"}}>Log In</h2>
     {/* Email Input */}
     <TextField
@@ -209,7 +210,7 @@ import {
 </div>
 
 
-    <Box mt={1.2} sx={{ display: 'flex', color: 'rgba(238, 238, 238, 1)', marginTop:"35px", fontWeight:"bold"}}>
+    <Box mt={1.2} sx={{ display: 'flex', color: 'rgba(238, 238, 238, 1)', marginTop: {xs: '6px', sm:"35px"}, fontWeight:"bold"}}>
     <Typography style={{fontWeight:"bold"}}>
         New to Memvy?
     </Typography>
